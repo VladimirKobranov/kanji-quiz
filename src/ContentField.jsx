@@ -1,12 +1,13 @@
 import React from "react";
 import {Text} from "@chakra-ui/react";
 
-function NavBar() {
+
+function ContentField() {
     return (
         <Text>
-            nav bar comp
+            main filed
         </Text>
     )
 }
 
-export default NavBar;
+export default ContentField;
