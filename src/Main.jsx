@@ -1,10 +1,26 @@
 import React from "react";
-import {Center} from "@chakra-ui/react";
+import {Center, Text, VStack} from "@chakra-ui/react";
+import styles from "./App.module.css";
+import Footer from "./Footer";
 
 function Main() {
     return (
-        <Center bg='tomato' h='100px' color='white'>
-            This is the Center
+        <Center bg='#AF282F' h='auto' color='white'>
+            <VStack>
+                <Text className={styles.AppTextMain}>
+                    Text english
+                </Text>
+                <Text className={styles.AppTextMain}>
+                    Roboto
+                </Text>
+                <Text className={styles.AppTexJap}>
+                    日本語テキスト
+                </Text>
+                <Text className={styles.AppTexJap}>
+                    noto sans jp
+                </Text>
+                <Footer/>
+            </VStack>
         </Center>
     )
 }
