@@ -19,9 +19,6 @@ function Main() {
                 <Text className={styles.AppTexJap}>
                     noto sans jp
                 </Text>
-                <Text className={styles.AppTexJap}>
-                    NEW TEXT
-                </Text>
                 <Footer/>
             </VStack>
         </Center>
