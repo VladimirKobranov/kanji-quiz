@@ -4,6 +4,7 @@ import Footer from "./Footer";
 import NavBar from "./NavBar";
 import ContentField from "./ContentField";
 
+
 function Main() {
     return (
         <Grid
@@ -14,10 +15,10 @@ function Main() {
             color="blackAlpha"
             margin="10px"
         >
-            <GridItem pl="2" bg="pink.300" area={"nav"} width="213px" h="94vh">
+            <GridItem   bg="pink.100" area={"nav"} width="213px" h="94vh">
                 <NavBar/>
             </GridItem>
-            <GridItem pl="2" bg="green.300" area={"main"} gridRow={"span 1"}>
+            <GridItem   bg="green.300" area={"main"} gridRow={"span 1"}>
                 <ContentField/>
             </GridItem>
             <GridItem pl="2" bg="blue.300" area={"footer"}>
