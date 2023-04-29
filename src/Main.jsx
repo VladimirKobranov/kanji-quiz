@@ -15,13 +15,13 @@ function Main() {
             color="blackAlpha"
             margin="10px"
         >
-            <GridItem   bg="pink.100" area={"nav"} width="213px" h="94vh">
+            <GridItem area={"nav"} width="213px" h="94vh">
                 <NavBar/>
             </GridItem>
-            <GridItem   bg="green.300" area={"main"} gridRow={"span 1"}>
+            <GridItem bg="green.300" area={"main"} gridRow={"span 1"}>
                 <ContentField/>
             </GridItem>
-            <GridItem pl="2" bg="blue.300" area={"footer"}>
+            <GridItem pl="2" area={"footer"}>
                 <Footer/>
             </GridItem>
         </Grid>
