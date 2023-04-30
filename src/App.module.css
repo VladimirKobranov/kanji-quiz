@@ -43,3 +43,24 @@
     font-variant: all-small-caps;
     padding-bottom: 10px;
 }
+
+.SelectedLevel {
+    position: relative;
+    width: 45px;
+    height: 41px;
+    left: 0;
+    top: 125px;
+
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 35px;
+    line-height: 41px;
+
+    display: flex;
+    align-items: center;
+    text-align: center;
+    text-transform: uppercase;
+
+    color: #101920;
+}

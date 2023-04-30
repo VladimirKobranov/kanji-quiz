@@ -5,9 +5,10 @@ import style from './MyButton.module.css';
 function MyButton(props) {
     const [isActive, setIsActive] = useState(false);
 
-    const handleClick = () => {
+    function handleClick(index) {
         setIsActive(!isActive);
-    };
+        console.log({index});
+    }
 
     const handleHover = () => {
         if (isActive) {
@@ -22,7 +23,7 @@ function MyButton(props) {
     }
 
     return (
-        <Box className={style.Button} onClick={handleClick} bg={isActive ? "#014A77" : "#E6E1E7"}
+        <Box className={style.Button} onClick={() => handleClick(props.index)} bg={isActive ? "#014A77" : "#E6E1E7"}
              color={isActive ? '#fcfcfd' : '#868686'} _hover={handleHover()}>
             {props.name}
         </Box>

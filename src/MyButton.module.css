@@ -7,10 +7,10 @@
     font-family: 'Roboto', sans-serif;
     font-style: normal;
     font-weight: 700;
-    font-size: 18px;
+    font-size: 23px;
     display: flex;
     align-items: center;
     text-align: center;
     justify-content: center;
-    text-transform: uppercase;
+    font-variant: all-small-caps;
 }
