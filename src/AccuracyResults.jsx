@@ -1,17 +1,18 @@
 import React from "react";
 import {Box, HStack, Text} from "@chakra-ui/react";
+import style from "./App.module.css";
 
 function AccuracyResults() {
     return (
-        <Box bg="violet" h="35" textAlign="center" w='150px'>
-            <Text fontSize='20px'>
-                ACCURACY
+        <Box textAlign="center">
+            <Text className={style.HeaderMain}>
+                Accuracy
             </Text>
             <HStack>
-                <Text w='75px'>
+                <Text w='75px' color='#868686'>
                     45/100
                 </Text>
-                <Text w='75px'>
+                <Text w='75px' color='#868686'>
                     45%
                 </Text>
             </HStack>

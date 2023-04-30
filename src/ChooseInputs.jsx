@@ -1,21 +1,19 @@
-import React from "react";
-import {Box, Checkbox, Text} from "@chakra-ui/react";
+import React, {useState} from "react";
+import {Box, Button, Checkbox, Text} from "@chakra-ui/react";
+import MyButton from "./MyButton";
+import style from "./App.module.css";
 
 function ChooseInputs() {
     return (
-        <Box bg="yellow.200" h="auto" textAlign="center" w='150px'>
-            <Text fontSize='20px'>
-                CHOOSE INPUTS
+        <Box h="auto" textAlign="center" w='150px'>
+            <Text className={style.HeaderMain}>
+               Choose inputs
             </Text>
-            <Checkbox w='100%' h='28px'>
-                romaji
-            </Checkbox>
-            <Checkbox w='100%' h='28px'>
-                furigana
-            </Checkbox>
-            <Checkbox w='100%' h='28px'>
-                meaning
-            </Checkbox>
+            <Box bg="tomato" rounded='2px'>
+                <MyButton name='romaji'/>
+                <MyButton name='furigana'/>
+                <MyButton name='meaning'/>
+            </Box>
         </Box>
     )
 }

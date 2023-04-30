@@ -29,3 +29,17 @@
     font-family: 'Noto Sans JP', sans-serif;
     font-size: 30px;
 }
+
+.HeaderMain {
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 27px;
+    line-height: 23px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    font-variant: all-small-caps;
+    padding-bottom: 10px;
+}

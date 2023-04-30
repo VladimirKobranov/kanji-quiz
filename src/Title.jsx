@@ -9,7 +9,7 @@ function Title() {
                 <Text className={style.TitleKanji}>
                     漢字 クイズ
                 </Text>
-                <Text className={style.TitleMain}>
+                <Text className={style.TitleMain} color='#868686'>
                     KANJI QUIZ
                 </Text>
             </VStack>

@@ -1,0 +1,16 @@
+.Button {
+    width: 150px;
+    height: 30px;
+    border-radius: 2px;
+    cursor: pointer;
+
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    text-transform: uppercase;
+}
