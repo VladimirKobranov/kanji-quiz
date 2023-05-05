@@ -1,17 +1,30 @@
-import React, {useState} from "react";
+import React, {createContext, useState} from "react";
 import {Grid, GridItem} from "@chakra-ui/react";
 import Footer from "./Footer";
 import NavBar from "./NavBar";
 import ContentField from "./ContentField";
 
-export const UserContext = React.createContext();
+
+const ButtonContext = createContext();
+export {ButtonContext};
 
 function Main() {
 
-    const [useLevel, SetUseLevel] = useState('N')
+    const [buttonStatus, setButtonStatus] = useState([
+        {name: "N1", active: false},
+        {name: "N2", active: false},
+        {name: "N3", active: false},
+        {name: "N4", active: false},
+        {name: "N5", active: false},
+    ]);
+    const toggleButton = (index) => {
+        const newButtonStatus = [...buttonStatus];
+        newButtonStatus[index].active = !newButtonStatus[index].active;
+        setButtonStatus(newButtonStatus);
+    };
 
     return (
-        <UserContext.Provider value={[useLevel, SetUseLevel]}>
+        <ButtonContext.Provider value={{buttonStatus, toggleButton}}>
             <Grid
                 templateAreas={`"nav main" "footer footer" `}
                 gridTemplateRows={" 1fr 38px"}
@@ -30,7 +43,7 @@ function Main() {
                     <Footer/>
                 </GridItem>
             </Grid>
-        </UserContext.Provider>
+        </ButtonContext.Provider>
     );
 }
 

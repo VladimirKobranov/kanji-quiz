@@ -9,7 +9,7 @@ function ChooseInputs() {
             <Text className={style.HeaderMain}>
                 Choose inputs
             </Text>
-            <Box bg="tomato" rounded='2px'>
+            <Box bg="#E6E1E7" rounded='2px'>
                 <MyButton name='romaji' index='romaji'/>
                 <MyButton name='furigana' index='furigana'/>
                 <MyButton name='meaning' index='meaning'/>

@@ -3,8 +3,8 @@ import {Box, Button, Text} from "@chakra-ui/react";
 
 function NavControlResults() {
     return (
-        <Box bg="blue" h="auto" width="190" color="white" textAlign="center" w="150px">
-            <Button bg="#AF282F" h="30px" rounded="2px" w='100%'>
+        <Box h="auto" width="190" color="white" textAlign="center" w="150px">
+            <Button bg="#AF282F" h="30px" rounded="2px" w='100%' mb='5px'>
                 <Text fontSize='20px'>
                     RESET
                 </Text>
