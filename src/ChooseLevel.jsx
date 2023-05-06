@@ -1,15 +1,18 @@
 import React, {useContext} from "react";
-import {Box, Button, VStack} from "@chakra-ui/react";
-import {ButtonContext} from "./Main";
+import {Box, Button, Text, VStack} from "@chakra-ui/react";
+import {LevelContext} from "./Main";
 import style from "./ChooseLevel.module.css";
+import styleMain from "./App.module.css";
 
 function ChooseLevel() {
-    const {buttonStatus, toggleButton} = useContext(ButtonContext);
+    const {buttonStatus, toggleButton} = useContext(LevelContext);
 
     return (
-        <Box bg="#E6E1E7" rounded='2px' h='auto'>
-            <VStack
-                spacing='0'>
+        <Box h="auto" textAlign="center" w='150px'>
+            <Text className={styleMain.HeaderMain}>
+                Choose levels
+            </Text>
+            <VStack bg="#E6E1E7" rounded='2px' h='auto' spacing='0'>
                 {buttonStatus.map((button, index) => (
                     <Button
                         w='150px'
