@@ -4,9 +4,9 @@ import Footer from "./Footer";
 import NavBar from "./NavBar";
 import ContentField from "./ContentField";
 
-const LevelContext = createContext();
-const InputsContext = createContext();
-const ResetContext = createContext();
+export const LevelContext = createContext();
+export const InputsContext = createContext();
+export const ResetContext = createContext();
 
 function Main() {
     const [levelStatus, setLevelStatus] = useState([
@@ -60,19 +60,19 @@ function Main() {
                 <ResetContext.Provider value={{reset}}>
                     <Grid
                         templateAreas={`"nav main" "footer footer" `}
-                        gridTemplateRows={" 1fr 38px"}
-                        gridTemplateColumns={"213px 1fr"}
-                        h="100%"
+                        gridTemplateRows="1fr 38px"
+                        gridTemplateColumns="213px 1fr"
+                        height="100%"
                         color="blackAlpha"
                         margin="10px"
                     >
-                        <GridItem area={"nav"} width="213px" h="94vh">
+                        <GridItem area="nav" width="213px" height="94vh">
                             <NavBar/>
                         </GridItem>
-                        <GridItem area={"main"} gridRow={"span 1"}>
+                        <GridItem area="main" gridRow="span 1">
                             <ContentField/>
                         </GridItem>
-                        <GridItem pl="2" area={"footer"}>
+                        <GridItem pl="2" area="footer">
                             <Footer/>
                         </GridItem>
                     </Grid>
@@ -82,5 +82,4 @@ function Main() {
     );
 }
 
-export {LevelContext, InputsContext, ResetContext};
 export default Main;

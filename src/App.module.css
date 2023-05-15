@@ -64,3 +64,24 @@
 
     color: #101920;
 }
+
+.SelectedInputs {
+    position: relative;
+    width: auto;
+    height: 41px;
+    left: 0;
+    top: 125px;
+
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 35px;
+    line-height: 41px;
+
+    display: flex;
+    align-items: center;
+    text-align: center;
+    text-transform: uppercase;
+
+    color: #101920;
+}

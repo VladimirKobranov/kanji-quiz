@@ -1,8 +1,9 @@
 import React, {useContext, useEffect, useState} from "react";
-import {Box, SimpleGrid, Text, VStack} from "@chakra-ui/react";
+import {Box, HStack, SimpleGrid, Text, VStack} from "@chakra-ui/react";
 import style from "./App.module.css";
 import {InputsContext, LevelContext} from "./Main";
 import KanjiCard from "./KanjiCard";
+import Content from "./contentField.module.css";
 
 function ContentField() {
     const {buttonStatus: levelButtonStatus} = useContext(LevelContext);
@@ -71,16 +72,20 @@ function ContentField() {
     return (
         <VStack spacing="0">
             <Box w="100%" h="160px">
-                <Text className={style.SelectedLevel}>
-                    {activeLevelButtonIndexes.length > 0
-                        ? `N${activeLevelButtonIndexes.join(",")}`
-                        : "Select N"}
-                </Text>
+                <HStack>
+                    <Text className={style.SelectedLevel}>
+                        {activeLevelButtonIndexes.length > 0
+                            ? `N${activeLevelButtonIndexes.join(",")}`
+                            : "Select N"}
+                    </Text>
+                    <Text className={style.SelectedInputs}>
+                        {activeInputsButtonNames.length > 0
+                            ? ""
+                            : "Select inputs"}
+                    </Text>
+                </HStack>
             </Box>
-            <Box bg="gray.200" w="100%" h="900px">
-                {activeInputsButtonNames.length > 0
-                    ? ""
-                    : "Select inputs"}
+            <Box bg="gray.200" w="100%" h="76vh" className={Content.scroll}>
                 {isLoading ? (
                     <Text>Loading...</Text>
                 ) : (
