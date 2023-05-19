@@ -85,7 +85,7 @@ function ContentField() {
                     </Text>
                 </HStack>
             </Box>
-            <Box bg="gray.200" w="100%" h="76vh" className={Content.scroll}>
+            <Box  w="100%" h="76vh" className={Content.scroll}>
                 {isLoading ? (
                     <Text>Loading...</Text>
                 ) : (
