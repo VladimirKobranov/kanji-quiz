@@ -85,7 +85,7 @@ function KanjiCard(props) {
                 </React.Fragment>
             );
         }
-        return null;z
+        return null;
     };
 
     return (
