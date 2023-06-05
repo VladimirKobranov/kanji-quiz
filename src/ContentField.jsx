@@ -14,27 +14,26 @@ function ContentField() {
     const [activeInputsButtonNames, setActiveInputsButtonNames] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
 
-
-//    from David Gouveia
-//  https://github.com/davidluzgouveia
+    // From David Gouveia
+    // https://github.com/davidluzgouveia
     const url =
         "https://raw.githubusercontent.com/davidluzgouveia/kanji-data/master/kanji.json";
 
-    function pullJson() {
-        setIsLoading(true);
-        fetch(url)
-            .then((response) => response.json())
-            .then((responseData) => {
-                const filteredData = Object.keys(responseData).filter((key) => {
-                    const jlptLevel = responseData[key].jlpt_new;
-                    return activeLevelButtonIndexes.includes(jlptLevel);
-                });
-                setJsonData(filteredData);
-                setIsLoading(false);
-            });
-    }
-
     useEffect(() => {
+        function pullJson() {
+            setIsLoading(true);
+            fetch(url)
+                .then((response) => response.json())
+                .then((responseData) => {
+                    const filteredData = Object.keys(responseData).filter((key) => {
+                        const jlptLevel = responseData[key].jlpt_new;
+                        return activeLevelButtonIndexes.includes(jlptLevel);
+                    });
+                    setJsonData(filteredData);
+                    setIsLoading(false);
+                });
+        }
+
         pullJson();
     }, [activeLevelButtonIndexes]);
 
@@ -79,13 +78,11 @@ function ContentField() {
                             : "Select N"}
                     </Text>
                     <Text className={style.SelectedInputs}>
-                        {activeInputsButtonNames.length > 0
-                            ? ""
-                            : "Select inputs"}
+                        {activeInputsButtonNames.length > 0 ? "" : "Select inputs"}
                     </Text>
                 </HStack>
             </Box>
-            <Box  w="100%" h="76vh" className={Content.scroll}>
+            <Box w="100%" h="76vh" className={Content.scroll}>
                 {isLoading ? (
                     <Text>Loading...</Text>
                 ) : (
