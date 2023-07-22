@@ -1,8 +1,12 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import {Box, HStack, Text} from "@chakra-ui/react";
-import style from "./App.module.css";
+import style from './css/App.module.css';
 
 function AccuracyResults() {
+    const [percentage, setPercentage] = useState('45%');
+
+
+
     return (
         <Box textAlign="center">
             <Text className={style.HeaderMain}>

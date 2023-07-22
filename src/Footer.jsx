@@ -1,14 +1,21 @@
 import React from "react";
-import {Center, Text} from "@chakra-ui/react";
-import style from "./Footer.module.css";
+import {Center, Link, Text} from "@chakra-ui/react";
+import style from "./css/Footer.module.css";
+
 
 const d = new Date();
 let year = d.getFullYear();
 
+const link = () => (
+    <Link href="https://github.com/VladimirKobranov">
+        copyright VK
+    </Link>
+);
+
 function Footer() {
     return (
         <Center>
-            <Text className={style.footer}>copyright {year}</Text>
+            <Text className={style.footer} w='auto'>{link()}&nbsp;|&nbsp;{year}</Text>
         </Center>
     );
 }

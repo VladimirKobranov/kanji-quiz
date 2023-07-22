@@ -1,39 +1,23 @@
-import React, {useContext} from "react";
-import {Box, Button, Text} from "@chakra-ui/react";
-import style from "./ChooseLevel.module.css";
-import {InputsContext} from "./Main";
-import styleMain from "./App.module.css";
+import React from "react";
+import {Box, Text, VStack} from "@chakra-ui/react";
+import styleMain from './css/App.module.css';
+import ButtonInputs from "./ButtonInputs";
 
 function ChooseInputs() {
-
-    const {buttonStatus, toggleButton} = useContext(InputsContext);
-
     return (
         <Box h="auto" textAlign="center" w='150px'>
             <Text className={styleMain.HeaderMain}>
                 Choose inputs
             </Text>
             <Box bg="#E6E1E7" rounded='2px'>
-                {buttonStatus.map((button, index) => (
-                    <Button
-                        w='150px'
-                        h='30px'
-                        className={style.Button}
-                        variant='ghost'
-                        _hover={{}}
-                        borderRadius='2px'
-                        key={index}
-                        fontSize='23px'
-                        background={button.active ? "#014A77" : "#e6e1e7"}
-                        color={button.active ? "#FDFFFE" : "#868686"}
-                        onClick={() => toggleButton(index)}
-                    >
-                        {button.name}
-                    </Button>
-                ))}
+                <VStack bg="#E6E1E7" rounded="2px" h="auto" spacing="0">
+                    <ButtonInputs index='meaning' name='meaning'/>
+                    <ButtonInputs index='romaji' name='reading-on'/>
+                    <ButtonInputs index='furigana' name='reading-kun'/>
+                </VStack>
             </Box>
         </Box>
-    )
+    );
 }
 
 export default ChooseInputs;
