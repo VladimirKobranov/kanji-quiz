@@ -52,24 +52,34 @@ function ContentField() {
         card.meanings = data[kanji].meanings
         const meaningsString = card.meanings.join(',');
         const answer = card.meanings.some(key => key.toUpperCase() === value.trim().toUpperCase());
-        if (!answers[kanji]) {
-            answers[kanji] = []
-        }
-        answers[kanji].push({
-            input: value,
-            correct: answer,
-            meaning: meaningsString
-        })
-        console.log(answers)
-        answerToRedux(answers);
+        // if (!answers[kanji]) {
+        //     answers[kanji] = []
+        // }
+        // answers[kanji].push({
+        //     input: value,
+        //     correct: answer,
+        //     meaning: meaningsString
+        // })
+        // console.log(answers)
+        // answerToRedux(answers);
+        dispatch(addAnswer(
+            {
+                kanji,
+                input: value,
+                correct: answer,
+                meaning: meaningsString
+            }
+        ));
+        // const answersCopy = {...answers};
+        // dispatch(addAnswer(answersCopy));
         return answer
     }
 
-    const answerToRedux = (answers) => {
-        const answersCopy = {...answers};
-        dispatch(addAnswer(answersCopy));
-        // dispatch(addAnswer(answers[answers.length]))
-    }
+    // const answerToRedux = (answers) => {
+    //     const answersCopy = {...answers};
+    //     dispatch(addAnswer(answersCopy));
+    //     // dispatch(addAnswer(answers[answers.length]))
+    // }
 
 
     function createKanjiCard(name, index) {

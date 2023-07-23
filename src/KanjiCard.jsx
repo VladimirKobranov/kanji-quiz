@@ -7,6 +7,7 @@ function KanjiCard(props) {
     const inputsFromRedux = useSelector((state) => state.inputs);
     const [color, setColor] = useState("#E6E1E7");
     const [message, setMessage] = useState('');
+    const [keyEnter, setKeyEnter] = useState(false);
     const handleChange = (event) => {
         const v = event.target.value
         if (!v) return
@@ -19,6 +20,22 @@ function KanjiCard(props) {
             setColor('#AF282F')
         }
     }
+    const handleKeyDown = (event) => {
+        if (event.key === "Enter") {
+            setKeyEnter(true)
+            const v = event.target.value;
+            if (!v) return;
+            setMessage(v);
+            let valid = props.validation(props.kanji, v);
+            console.log('card is valid', valid);
+            if (valid) {
+                setColor('#014A77');
+            } else {
+                setColor('#AF282F');
+            }
+        }
+    };
+
     useEffect(() => {
         console.log(message); // Log the message whenever it changes
     }, [message]);
@@ -46,7 +63,8 @@ function KanjiCard(props) {
                             focusBorderColor="#E6E1E7"
                             _hover={{backgroundColor: color}}
                             _focus={{backgroundColor: color}}
-                            onBlur={handleChange}
+                            onBlur={keyEnter? null : handleChange}
+                            onKeyDown={handleKeyDown}
                         />
                     ))}
                 </VStack>

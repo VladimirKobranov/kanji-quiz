@@ -3,10 +3,22 @@ import {reset} from "../store";
 
 const answersSlice = createSlice({
     name: "answer",
-    initialState: [],
+    initialState: {
+        answers: {}
+    },
     reducers: {
         addAnswer(state, action) {
-            state.push(action.payload);
+            console.log(state,action);
+            const kanji = action.payload.kanji;
+            // state.push(action.payload);
+            if (!state.answers[kanji]) {
+                state.answers[kanji] = []
+            }
+            state.answers[kanji].push({
+            ...action.payload
+            })
+
+            // state.object = action.payload;
         },
         removeAnswer(state, action) {
             const index = state.indexOf(action.payload);
@@ -15,7 +27,7 @@ const answersSlice = createSlice({
     },
     extraReducers(builder) {
         builder.addCase(reset, (state, action) => {
-            return [];
+            return { answers: {}};
         })
     }
 });
