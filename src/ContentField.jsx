@@ -4,7 +4,7 @@ import style from './css/App.module.css';
 import KanjiCard from "./KanjiCard";
 import Content from "./css/contentField.module.css";
 import {useDispatch, useSelector} from "react-redux";
-import {addAnswer, addInput, removeAnswer, removeInput, result} from "./store/store";
+import {addAnswer} from "./store/store";
 
 function ContentField() {
     const levelsFromRedux = useSelector((state) => state.levels);
@@ -14,7 +14,6 @@ function ContentField() {
     const [names, setNames] = useState([]);
     const [data, setData] = useState({});
     const [jlptLevelFilter, setJlptLevelFilter] = useState([]);
-    const answers = {};
 
     useEffect(() => {
         const fetchData = async () => {
@@ -50,37 +49,28 @@ function ContentField() {
     function validateCard(kanji, value) { //add to store
         const card = {meanings: []}
         card.meanings = data[kanji].meanings
+        card.readings_on = data[kanji].readings_on
+        card.readings_kun = data[kanji].readings_kun
         const meaningsString = card.meanings.join(',');
         const answer = card.meanings.some(key => key.toUpperCase() === value.trim().toUpperCase());
-        // if (!answers[kanji]) {
-        //     answers[kanji] = []
-        // }
-        // answers[kanji].push({
-        //     input: value,
-        //     correct: answer,
-        //     meaning: meaningsString
-        // })
-        // console.log(answers)
-        // answerToRedux(answers);
+        const answerOn = card.readings_on.some(key => key.toUpperCase() === value.trim().toUpperCase());
+        const answerKun = card.readings_kun.some(key => key.toUpperCase() === value.trim().toUpperCase());
+        const readings_on = card.readingOn
+        const readings_kun = card.readingKun
         dispatch(addAnswer(
             {
                 kanji,
                 input: value,
                 correct: answer,
-                meaning: meaningsString
+                correctOn: answerOn,
+                correctKun: answerKun,
+                meaning: meaningsString,
+                readingOn: readings_on,
+                readingKun: readings_kun
             }
         ));
-        // const answersCopy = {...answers};
-        // dispatch(addAnswer(answersCopy));
         return answer
     }
-
-    // const answerToRedux = (answers) => {
-    //     const answersCopy = {...answers};
-    //     dispatch(addAnswer(answersCopy));
-    //     // dispatch(addAnswer(answers[answers.length]))
-    // }
-
 
     function createKanjiCard(name, index) {
         return (

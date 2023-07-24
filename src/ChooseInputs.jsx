@@ -12,8 +12,9 @@ function ChooseInputs() {
             <Box bg="#E6E1E7" rounded='2px'>
                 <VStack bg="#E6E1E7" rounded="2px" h="auto" spacing="0">
                     <ButtonInputs index='meaning' name='meaning'/>
-                    <ButtonInputs index='romaji' name='reading-on'/>
-                    <ButtonInputs index='furigana' name='reading-kun'/>
+                    <Text fontSize='12px'>UNDER CONSTRUCTION</Text>
+                    <ButtonInputs index='reading-on' name='reading-on'/>
+                    <ButtonInputs index='reading-kun' name='reading-kun'/>
                 </VStack>
             </Box>
         </Box>

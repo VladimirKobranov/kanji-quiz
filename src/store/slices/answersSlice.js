@@ -8,17 +8,13 @@ const answersSlice = createSlice({
     },
     reducers: {
         addAnswer(state, action) {
-            console.log(state,action);
             const kanji = action.payload.kanji;
-            // state.push(action.payload);
             if (!state.answers[kanji]) {
                 state.answers[kanji] = []
             }
             state.answers[kanji].push({
             ...action.payload
             })
-
-            // state.object = action.payload;
         },
         removeAnswer(state, action) {
             const index = state.indexOf(action.payload);
