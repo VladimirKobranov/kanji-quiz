@@ -51,9 +51,9 @@
 .infoGreetingsGoodLuckJap{
     color: #101920;
     /*font-family: Roboto;*/
-    font-size: 24px;
+    font-size: 28px;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
-    font-variant: all-small-caps;
+    /*font-variant: all-small-caps;*/
 }
