@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/VladimirKobranov/kanji-quiz/static/css/main.5453a219.css",
+    "main.js": "/VladimirKobranov/kanji-quiz/static/js/main.d0469e27.js",
+    "index.html": "/VladimirKobranov/kanji-quiz/index.html",
+    "main.5453a219.css.map": "/VladimirKobranov/kanji-quiz/static/css/main.5453a219.css.map",
+    "main.d0469e27.js.map": "/VladimirKobranov/kanji-quiz/static/js/main.d0469e27.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.5453a219.css",
+    "static/js/main.d0469e27.js"
+  ]
+}
