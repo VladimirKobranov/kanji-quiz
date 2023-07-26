@@ -10,11 +10,16 @@ function NavControlResults() {
     const answersFromRedux = useSelector((state) => state.answers.answers);
     const totalQuestions = Object.keys(answersFromRedux).length;
     const correctAnswers = Object.values(answersFromRedux).map((item) => item[0].correct);
-    const correctCount = correctAnswers.filter((answer) => answer).length;
+    const correctAnswersOn = Object.values(answersFromRedux).map((item) => item[0].correctOn);
+    const correctAnswersKun = Object.values(answersFromRedux).map((item) => item[0].correctKun);
+
+    const correctCount = correctAnswers.filter((answer) => answer).length +
+        correctAnswersOn.filter((answer) => answer).length +
+        correctAnswersKun.filter((answer) => answer).length;
+
     const accuracyPercentage = ((correctCount / totalQuestions) * 100).toFixed(0) + "%";
     const [percentage, setPercentage] = useState('0%');
     const [questions, setQuestions] = useState('0/0')
-
 
     const handleResetClick = () => {
         dispatch(reset());
@@ -23,7 +28,8 @@ function NavControlResults() {
         dispatch(result());
         setPercentage(accuracyPercentage)
         setQuestions(`${correctCount}/${totalQuestions}`);
-        console.log(answersFromRedux)
+        // console.log(answersFromRedux)
+        // console.log('correct count: ', correctCount)
     }
     return (
         <Box>

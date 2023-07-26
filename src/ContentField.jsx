@@ -15,6 +15,13 @@ function ContentField() {
     const [names, setNames] = useState([]);
     const [data, setData] = useState({});
     const [jlptLevelFilter, setJlptLevelFilter] = useState([]);
+    // var inputIndex;
+    //
+    // const handleCallback = (index) => {
+    //     // Do something with the index received from KanjiCard
+    //     inputIndex = index;
+    //     console.log("Received index from KanjiCard:", index);
+    // };
 
     useEffect(() => {
         const fetchData = async () => {
@@ -53,11 +60,21 @@ function ContentField() {
         card.readings_on = data[kanji].readings_on
         card.readings_kun = data[kanji].readings_kun
         const meaningsString = card.meanings.join(',');
-        const answer = card.meanings.some(key => key.toUpperCase() === value.trim().toUpperCase());
-        const answerOn = card.readings_on.some(key => key.toUpperCase() === value.trim().toUpperCase());
-        const answerKun = card.readings_kun.some(key => key.toUpperCase() === value.trim().toUpperCase());
+        const answer = card.meanings.some(key => key.toUpperCase() === value.trim().toUpperCase()
+            && inputsFromRedux.includes('meaning'));
+        const answerOn = card.readings_on.some(key => key.toUpperCase() === value.trim().toUpperCase()
+            && inputsFromRedux.includes('reading-on'));
+        const answerKun = card.readings_kun.some(key => key.toUpperCase() === value.trim().toUpperCase()
+            && inputsFromRedux.includes('reading-kun'));
         const readings_on = card.readingOn
         const readings_kun = card.readingKun
+        let answersTrue = false
+
+        if (answer || answerOn || answerKun) {
+            answersTrue = true
+        }
+        console.log('input: ', answer, answerOn, answerKun, inputsFromRedux, card.readings_kun)
+        console.log('index from content: ', inputsFromRedux.map(x => x))
         dispatch(addAnswer(
             {
                 kanji,
@@ -70,7 +87,7 @@ function ContentField() {
                 readingKun: readings_kun
             }
         ));
-        return answer
+        return answersTrue
     }
 
     function createKanjiCard(name, index) {
@@ -79,8 +96,9 @@ function ContentField() {
                 key={(Math.random() + 1).toString(32).substring(7)}
                 textCol="black"
                 kanji={name}
-                index={index}
                 validation={validateCard}
+                index={inputsFromRedux.map(x => x)}
+                // callback={handleCallback}
             />
         );
     }

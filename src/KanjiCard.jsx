@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import {Box, Input, Text, VStack} from "@chakra-ui/react";
 import style from "./css/KanjiCard.module.css";
 import {useSelector} from "react-redux";
@@ -6,26 +6,29 @@ import {useSelector} from "react-redux";
 function KanjiCard(props) {
     const inputsFromRedux = useSelector((state) => state.inputs);
     const [color, setColor] = useState("#E6E1E7");
-    const [message, setMessage] = useState('');
+    // const [message, setMessage] = useState('');
     const [keyEnter, setKeyEnter] = useState(false);
-    const handleChange = (event) => {
+
+    const handleChange = (event, index) => {
         const v = event.target.value
         if (!v) return
-        setMessage(v);
-        let valid = props.validation(props.kanji , v);
-        console.log('card is valid',valid)
-        if(valid){
+        // setMessage(v);
+        let valid = props.validation(props.kanji, v);
+        console.log('card is valid', valid)
+        if (valid) {
             setColor('#014A77')
-        }else {
+        } else {
             setColor('#AF282F')
         }
+        console.log('index: ', index, inputsFromRedux[index])
+        // props.callback(index);
     }
     const handleKeyDown = (event) => {
         if (event.key === "Enter") {
             setKeyEnter(true)
             const v = event.target.value;
             if (!v) return;
-            setMessage(v);
+            // setMessage(v);
             let valid = props.validation(props.kanji, v);
             console.log('card is valid', valid);
             if (valid) {
@@ -36,9 +39,9 @@ function KanjiCard(props) {
         }
     };
 
-    useEffect(() => {
-        console.log(message); // Log the message whenever it changes
-    }, [message]);
+    // useEffect(() => {
+    //     console.log(message); // Log the message whenever it changes
+    // }, [message]);
 
     return (
         <VStack spacing="2px" w="100px" bg={color}>
@@ -49,7 +52,8 @@ function KanjiCard(props) {
                 <VStack spacing="2px">
                     {inputsFromRedux.map((inputValue, index) => (
                         <Input
-                            key={index}
+                            index={props.index}
+                            key={inputsFromRedux[index]}
                             placeholder={inputValue}
                             variant="filled"
                             className={style.CardText}
@@ -63,7 +67,8 @@ function KanjiCard(props) {
                             focusBorderColor="#E6E1E7"
                             _hover={{backgroundColor: color}}
                             _focus={{backgroundColor: color}}
-                            onBlur={keyEnter? null : handleChange}
+                            // onBlur={keyEnter? null : handleChange()}
+                            onBlur={(event) => keyEnter ? null : (handleChange(event, index))}
                             onKeyDown={handleKeyDown}
                         />
                     ))}

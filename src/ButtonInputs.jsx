@@ -4,7 +4,7 @@ import style from './css/MyButton.module.css';
 import {addInput, removeInput} from "./store/store";
 import {useDispatch, useSelector} from "react-redux";
 
-function ButtonLevels(props) {
+function ButtonInput(props) {
     const [isActive, setIsActive] = useState(false);
     const dispatch = useDispatch();
     const inputsFromRedux = useSelector((state) => state.inputs);
@@ -43,4 +43,4 @@ function ButtonLevels(props) {
     );
 }
 
-export default ButtonLevels;
+export default ButtonInput;

@@ -12,7 +12,6 @@ function ChooseInputs() {
             <Box bg="#E6E1E7" rounded='2px'>
                 <VStack bg="#E6E1E7" rounded="2px" h="auto" spacing="0">
                     <ButtonInputs index='meaning' name='meaning'/>
-                    <Text fontSize='12px'>UNDER CONSTRUCTION</Text>
                     <ButtonInputs index='reading-on' name='reading-on'/>
                     <ButtonInputs index='reading-kun' name='reading-kun'/>
                 </VStack>
