@@ -6,7 +6,7 @@ import Content from "./css/contentField.module.css";
 import {useDispatch, useSelector} from "react-redux";
 import {addAnswer} from "./store/store";
 import InfoMessage from "./InfoMessage";
-import dataKanji from "./data/kanji.json";
+import kanjiData from "./data/kanji.json";
 function ContentField() {
     const levelsFromRedux = useSelector((state) => state.levels);
     const inputsFromRedux = useSelector((state) => state.inputs);
@@ -29,9 +29,9 @@ function ContentField() {
             try {
                 // const response = await fetch(url);
                 // const data = await response.json();
-                const data = dataKanji;
-                setData(data);
-                const kanjiNames = Object.keys(data);
+                // const data = dataKanji;
+                setData(kanjiData); // Set the imported data directly
+                const kanjiNames = Object.keys(kanjiData);
                 setNames(kanjiNames);
             } catch (error) {
                 console.error("Error fetching data:", error);
