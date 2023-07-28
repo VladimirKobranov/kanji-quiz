@@ -6,12 +6,13 @@ import Content from "./css/contentField.module.css";
 import {useDispatch, useSelector} from "react-redux";
 import {addAnswer} from "./store/store";
 import InfoMessage from "./InfoMessage";
-
+import dataKanji from "./data/kanji.json";
 function ContentField() {
     const levelsFromRedux = useSelector((state) => state.levels);
     const inputsFromRedux = useSelector((state) => state.inputs);
     const dispatch = useDispatch();
-    const url = "https://raw.githubusercontent.com/davidluzgouveia/kanji-data/master/kanji.json";
+
+    // const url = "https://raw.githubusercontent.com/davidluzgouveia/kanji-data/master/kanji.json";
     const [names, setNames] = useState([]);
     const [data, setData] = useState({});
     const [jlptLevelFilter, setJlptLevelFilter] = useState([]);
@@ -26,8 +27,9 @@ function ContentField() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch(url);
-                const data = await response.json();
+                // const response = await fetch(url);
+                // const data = await response.json();
+                const data = dataKanji;
                 setData(data);
                 const kanjiNames = Object.keys(data);
                 setNames(kanjiNames);
@@ -90,7 +92,7 @@ function ContentField() {
         return answersTrue
     }
 
-    function createKanjiCard(name, index) {
+    function createKanjiCard(name) {
         return (
             <KanjiCard
                 key={(Math.random() + 1).toString(32).substring(7)}
@@ -98,7 +100,6 @@ function ContentField() {
                 kanji={name}
                 validation={validateCard}
                 index={inputsFromRedux.map(x => x)}
-                // callback={handleCallback}
             />
         );
     }
