@@ -14,8 +14,11 @@ const link = () => (
 
 function Footer() {
     return (
-        <Center>
-            <Text className={style.footer} w='auto'>{link()}&nbsp;|&nbsp;{year}</Text>
+        <Center w='100%'>
+            <Text
+                className={style.footer}
+                w='auto'
+            >{link()}&nbsp;|&nbsp;{year}</Text>
         </Center>
     );
 }

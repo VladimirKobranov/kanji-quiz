@@ -3,6 +3,7 @@ import {Box} from "@chakra-ui/react";
 import style from './css/MyButton.module.css';
 import {addLevel, removeLevel} from "./store/store";
 import {useDispatch, useSelector} from "react-redux";
+import {isBrowser} from 'react-device-detect';
 
 function ButtonLevels(props) {
     const [isActive, setIsActive] = useState(false);
@@ -35,7 +36,7 @@ function ButtonLevels(props) {
 
     return (
         <Box
-            className={style.Button}
+            className={isBrowser ? style.Button : style.ButtonMobile}
             onClick={() => handleClick(props.index)}
             bg={isActive ? "#014A77" : "#E6E1E7"}
             color={isActive ? '#fcfcfd' : '#868686'}

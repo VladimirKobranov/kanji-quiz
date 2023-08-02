@@ -1,14 +1,26 @@
-import React from "react";
-import {Box, Grid, GridItem, HStack, Text, VStack} from "@chakra-ui/react";
+import React, {useState} from "react";
+import {Box, Collapse, Grid, GridItem} from "@chakra-ui/react";
 import Footer from "./Footer";
 import NavBar from "./NavBar";
 import ContentField from "./ContentField";
-import {BrowserView, MobileView, isBrowser, isMobile} from 'react-device-detect';
+import {BrowserView, MobileView} from 'react-device-detect';
 import Icon from '@mdi/react';
-import { mdiHammerWrench } from '@mdi/js';
+import {mdiDotsHorizontal} from '@mdi/js';
 
 
 function Main() {
+    const [show, setShow] = useState(false)
+    const [display, setDisplay] = useState("")
+    const [buttonColor, setButtonColor] = useState('#E6E1E7')
+    const [buttonTextColor, setButtonTextColor] = useState('#01111FFF')
+
+    const handleToggle = () => {
+        setShow(!show);
+        setDisplay(display === 'none' ? "" : 'none')
+        setButtonColor(buttonColor === '#E6E1E7' ? '#014A77FF' : '#E6E1E7')
+        setButtonTextColor(buttonTextColor === '#01111FFF' ? '#E6E1E7FF' : '#01111FFF')
+    }
+
     return (
         <Box>
             <BrowserView>
@@ -32,13 +44,28 @@ function Main() {
                 </Grid>
             </BrowserView>
             <MobileView>
-                <VStack mb='65vh'>
-                    <Text align='center' mt='50%' fontSize='25px'>
-                        Under construction
-                    </Text>
-                    <Icon path={mdiHammerWrench} size={2} />
-                </VStack>
-                <Footer/>
+                <Box w='auto' h='90%' m='20px'>
+                    <Box
+                        position='absolute'
+                        w='60px'
+                        h='60px'
+                        color='#101920'
+                        bg={buttonColor}
+                        borderRadius='50px'
+                        top='0' right='5%'
+                        onClick={handleToggle}>
+                        <Icon path={mdiDotsHorizontal} size={'60px'} color={buttonTextColor}/>
+                    </Box>
+                    <Box>
+                        <Collapse in={show}>
+                            <ContentField/>
+                        </Collapse>
+                        <Box display={display}>
+                            <NavBar/>
+                        </Box>
+                    </Box>
+                    <Footer/>
+                </Box>
             </MobileView>
         </Box>
     );

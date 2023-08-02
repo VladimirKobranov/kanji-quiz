@@ -31,10 +31,24 @@
 }
 
 .HeaderMain {
+    width: auto;
     font-family: 'Roboto', sans-serif;
     font-style: normal;
     font-weight: 600;
     font-size: 27px;
+    line-height: 23px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    font-variant: all-small-caps;
+    padding-bottom: 10px;
+}
+.HeaderMainMobile {
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 35px;
     line-height: 23px;
     display: flex;
     align-items: center;
@@ -48,7 +62,7 @@
     position: relative;
     width: auto;
     height: 41px;
-    left: 5px;
+    left: 0;
     top: 100px;
 
     font-family: 'Roboto', sans-serif;
@@ -61,7 +75,25 @@
     align-items: center;
     text-align: center;
     text-transform: uppercase;
+    color: #101920;
+}
+.SelectedLevelMobile {
+    position: absolute;
+    width: auto;
+    height: auto;
+    left: 30px;
+    top: 0;
 
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 25px;
+    line-height: 41px;
+
+    display: flex;
+    align-items: start;
+    text-align: left;
+    text-transform: uppercase;
     color: #101920;
 }
 
@@ -69,7 +101,7 @@
     position: relative;
     width: auto;
     height: 41px;
-    left: 5px;
+    left: 0;
     top: 100px;
 
     font-family: 'Roboto', sans-serif;
@@ -81,6 +113,26 @@
     display: flex;
     align-items: center;
     text-align: center;
+    text-transform: uppercase;
+
+    color: #101920;
+}
+.SelectedInputsMobile {
+    position: absolute;
+    width: auto;
+    height: auto;
+    left: 30px;
+    top: 30px;
+
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 25px;
+    line-height: 41px;
+
+    display: flex;
+    align-items: start;
+    text-align: left;
     text-transform: uppercase;
 
     color: #101920;

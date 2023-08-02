@@ -1,9 +1,9 @@
 import React, {useState} from "react";
-import {Box, Button, HStack, Text} from "@chakra-ui/react";
+import {Box, Button, Center, HStack, Text} from "@chakra-ui/react";
 import {useDispatch, useSelector} from "react-redux";
 import {reset, result} from "./store/store";
 import style from './css/App.module.css';
-
+import {isBrowser} from 'react-device-detect';
 
 function NavControlResults() {
     const dispatch = useDispatch();
@@ -28,31 +28,53 @@ function NavControlResults() {
         dispatch(result());
         setPercentage(accuracyPercentage)
         setQuestions(`${correctCount}/${totalQuestions}`);
-        // console.log(answersFromRedux)
-        // console.log('correct count: ', correctCount)
     }
     return (
-        <Box>
-            <Box h="auto" width="190" color="white" textAlign="center" w="150px" mb='20px'>
-                <Button bg="#AF282F" h="30px" rounded="2px" w="100%" mb="5px" onClick={() => handleResetClick()}>
-                    <Text fontSize="20px">RESET</Text>
+        <Box textAlign="center">
+            <Box
+                h="auto"
+                width="auto"
+                color="white"
+                w={isBrowser ? "150px" : '200px'}
+                mb='20px'
+            >
+                <Button
+                    bg="#AF282F"
+                    h={isBrowser ? "30px" : '30px'}
+                    rounded={isBrowser ? "2px" : '5px'}
+                    w={isBrowser ? "150px" : '200px'}
+                    onClick={() => handleResetClick()}
+                    mb={isBrowser ? '5px' : '10px'}
+                >
+                    <Text fontSize={isBrowser ? "20px" : '20px'}>
+                        RESET
+                    </Text>
                 </Button>
-                <Button bg="#014A77" h="30px" rounded="2px" w="100%" onClick={() => handleResultClick()}>
-                    <Text fontSize="20px">RESULT</Text>
+
+                <Button
+                    bg="#014A77"
+                    h={isBrowser ? "30px" : '30px'}
+                    rounded={isBrowser ? "2px" : '5px'}
+                    w="100%"
+                    onClick={() => handleResultClick()}>
+                    <Text
+                        fontSize={isBrowser ? "20px" : '20px'}
+                    >RESULT</Text>
                 </Button>
             </Box>
-            <Box textAlign="center">
-                <Text className={style.HeaderMain}>
+            <Box>
+                <Text className={isBrowser ? style.HeaderMain : style.HeaderMainMobile}>
                     Accuracy
                 </Text>
                 <HStack>
-                    <Text w='75px' color='#868686'>
-                        {/*45/100*/}
-                        {questions}
-                    </Text>
-                    <Text w='75px' color='#868686'>
-                        {percentage}
-                    </Text>
+                    <Center w='100%'>
+                        <Text w='auto' color='#868686' mr='20px'>
+                            {questions}
+                        </Text>
+                        <Text w='auto' color='#868686'>
+                            {percentage}
+                        </Text>
+                    </Center>
                 </HStack>
             </Box>
         </Box>
