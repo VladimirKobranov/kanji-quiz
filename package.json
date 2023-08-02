@@ -1,7 +1,7 @@
 {
-  "homepage": "https://kanjiquiz.app",
   "name": "kanji-quiz",
-  "version": "0.2.0",
+  "homepage": "https://kanjiquiz.app",
+  "version": "0.3.0",
   "private": true,
   "dependencies": {
     "@chakra-ui/react": "^2.6.0",
