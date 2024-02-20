@@ -1,27 +1,30 @@
-## いらっしゃいませ!
-<sub> or greetings! </sub>
+# Kanji Quiz App.
 
-### Welcome to the Kanji Quiz App.
-#### The app link: [Kanji quiz](https://vladimirkobranov.github.io/kanji-quiz/).
-<sub>version 0.9</sub>
+## The app link: [Kanji quiz](https://vladimirkobranov.github.io/kanji-quiz/)
 
-Here, you can practice with N5 to N1 `Kanji` levels, along with their `meanings` and `On'yomi`[^1] and `Kun'yomi`[^1] readings.
+<sub>version 1.2</sub>
+
+### Instuctions:
+
+Here, you can practice `Kanji` from N5 to N1 levels, along with their `meanings` and `On'yomi`[^1] and `Kun'yomi`[^1] readings.
 
 A blue card indicates a correct answer, while a red card indicates an incorrect one.
-After you're done, press the `Results` button to see your accuracy percentage.
+After you're done, press the `RESULTS` button to see your accuracy percentage.
 
-Press the `Reset` button to start over.
+Press the `RESET` button to start over.
 
-### Good luck! :heart:
+Press `HINT MODE` on desktop or big `?` on mobile to toggle on hint mode.
+Each `Kanji` can provide info in popover by pressing on `?` button.
 
-### 頑張って!
 
-
-[^1]: To use on'yomi and kun'yomi(or on-reading and kun-reading) you need a Japanese layout in your system.
-
+[^1]: To use On'yomi and Kun'yomi(or On-reading and Kun-reading) you need a Japanese layout in your system.
 
 ---
 
+### Release changelog:
+* v1.0 release
+* v1.2 added hint button with popovers on mobile and desktop
+
 ### References:
 
-* Using [KanjiData](https://github.com/davidluzgouveia/kanji-data) from [David Luzgouveia](https://github.com/davidluzgouveia)
+- Using [KanjiData](https://github.com/davidluzgouveia/kanji-data) by [David Luzgouveia](https://github.com/davidluzgouveia)

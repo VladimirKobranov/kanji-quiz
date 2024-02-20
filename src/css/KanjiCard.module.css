@@ -1,39 +1,35 @@
 .CardKanji {
-    /*    position: absolute;*/
-    /*    left: 0%;*/
-    /*    right: 0%;*/
-    /*    top: 0%;*/
-    /*    bottom: 23.66%;*/
-
-    font-family: 'Noto Sans JP', sans-serif;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 80px;
-    line-height: 116px;
-    display: flex;
-    align-items: center;
-    text-align: center;
-    justify-content: center;
-    color: #101920;
+  font-family: "Noto Sans JP", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 80px;
+  line-height: 116px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  color: #101920;
 }
 
-
 .CardText {
-    /*    position: absolute;*/
-    /*    left: 0%;*/
-    /*    right: 0%;*/
-    /*    top: 78.63%;*/
-    /*    bottom: 0%;*/
+  font-family: "Roboto", sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 19px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  font-variant: all-small-caps;
+  justify-content: center;
+  color: #d9d7dc;
+}
 
-    font-family: 'Roboto', sans-serif;
-    font-style: normal;
-    font-weight: 700;
-    font-size: 16px;
-    line-height: 19px;
-    display: flex;
-    align-items: center;
-    text-align: center;
-    font-variant: all-small-caps;
-    justify-content: center;
-    color: #D9D7DC;
+.hintHeaderKanji {
+  font-family: "Noto Sans JP", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 100px;
+  color: #101920;
+  background-color: #e6e1e7;
 }
