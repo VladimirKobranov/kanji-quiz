@@ -65,9 +65,10 @@ function KanjiCard(props) {
     <VStack spacing="2px" w="100px" bg={color} rounded="2px">
       <Flex position="relative" right="-30px" top="5px">
         <Collapse in={hintState}>
-          <Popover isLazy placement="auto">
+          <Popover isLazy placement="auto" >
             <PopoverTrigger>
               <Button
+                rounded='20px'
                 size="xs"
                 onClick={() => handleHintClick(props)}
                 bg="#C2BCC1"
@@ -77,14 +78,14 @@ function KanjiCard(props) {
             </PopoverTrigger>
             <PopoverContent>
               <PopoverArrow />
-              <PopoverCloseButton />
-              <PopoverHeader fontSize="lg" fontWeight="700">
-                Hint!
+              <PopoverCloseButton size='lg' color='#FCFCFDFF'/>
+              <PopoverHeader fontSize="lg" fontWeight="700" bg='#014A77' color='#FCFCFDFF' rounded='5px'>
+                Hint
               </PopoverHeader>
-              <PopoverBody>
+              <PopoverBody rounded='5px'>
                 <Flex>
                   <Box mr="15px" p="5px">
-                    <Text className={style.hintHeaderKanji}>{props.kanji}</Text>
+                    <Text className={style.hintHeaderKanji} rounded='2px'>{props.kanji}</Text>
                   </Box>
                   <Box>
                     <Text fontWeight="700">Meaning:</Text>

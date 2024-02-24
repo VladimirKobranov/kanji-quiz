@@ -11,7 +11,7 @@ import style from "./css/App.module.css";
 import KanjiCard from "./KanjiCard";
 import Content from "./css/contentField.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { addAnswer, toggleHint } from "./store/store";
+import {addAnswer, toggleHint} from "./store/store";
 import InfoMessage from "./InfoMessage";
 import kanjiData from "./data/kanji.json";
 import { BrowserView, isBrowser, MobileView } from "react-device-detect";
@@ -132,7 +132,7 @@ function ContentField() {
 
   return (
     <VStack spacing="0">
-      <Box w="100%" h={isBrowser ? "160px" : "120px"}>
+      <Box w="100%" h={isBrowser ? "160px" : "80px"}>
         <BrowserView>
           <HStack>
             <Text
@@ -170,12 +170,17 @@ function ContentField() {
             {levelsFromRedux.length === 0 ? (
               ""
             ) : (
-              <Box className={style.hintButtonMobile}>
+              <Box className={style.hintButtonMobile} >
                 <Button
                   onClick={handleHintClick}
-                  bg="#d9d7dc"
-                  size="lg"
+                  bg='#d9d7dc'
+                  _hover={{ bg: "#d9d7dc" }}
+                  fontSize='30px'
+                  height='60px'
+                  width='60px'
                   borderRadius="100px"
+                  left='80px'
+                  top='-4px'
                 >
                   ?
                 </Button>
@@ -186,7 +191,7 @@ function ContentField() {
       </Box>
       <Box
         w="100%"
-        h={isBrowser ? "76vh" : window.innerHeight * 0.75}
+        h={isBrowser ? "76vh" : window.innerHeight * 0.8}
         className={Content.scroll}
       >
         <SimpleGrid

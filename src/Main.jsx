@@ -53,7 +53,7 @@ function Main() {
             color="#101920"
             bg={buttonColor}
             borderRadius="50px"
-            top="0"
+            top="4px"
             right="5%"
             onClick={handleToggle}
           >
