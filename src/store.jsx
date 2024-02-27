@@ -29,8 +29,29 @@ export const StoreProvider = ({ children }) => {
   }, [level, input]);
 
   const makeResults = () => {
-    setResults(1); // just check
-    console.log("results function");
+    const answers = storeState.answers;
+    const mode = storeState.input;
+    const data = storeState.data;
+
+    let correctCount = 0;
+    let totalItems = 0;
+
+    for (let i = 0; i < answers.length; i++) {
+      const answer =
+        mode === "meanings" ? answers[i].toLowerCase() : answers[i];
+      const correctData =
+        mode === "meanings"
+          ? data[i][mode].map((meaning) => meaning.toLowerCase())
+          : data[i][mode];
+
+      if (correctData.includes(answer)) {
+        correctCount++;
+      }
+      totalItems++;
+    }
+
+    const percentage = ((correctCount / totalItems) * 100).toFixed(2);
+    setResults(percentage + "%");
   };
 
   const reset = () => {
@@ -40,6 +61,7 @@ export const StoreProvider = ({ children }) => {
       ...prevState,
       answers: [],
     }));
+    setResults(0);
     console.log("reset function");
   };
 

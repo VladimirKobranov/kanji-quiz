@@ -1,4 +1,4 @@
-import { Suspense, useContext, useEffect } from "react";
+import { Suspense, useContext, useEffect, useState } from "react";
 import { StoreContext } from "./store";
 import data from "./data.js";
 import KanjiCard from "./KanjiCard";
@@ -9,6 +9,7 @@ export default function Main() {
   const { reset } = useContext(StoreContext);
   const { level, setLevel } = useContext(StoreContext);
   const { input, setInput } = useContext(StoreContext);
+  const [inputVal, setInputVal] = useState("");
 
   const kanjiData = Object.keys(data).filter(
     (key) => data[key]["jlpt_new"] === storeState.jlpt,
@@ -33,6 +34,7 @@ export default function Main() {
   }
 
   function handleReset() {
+    setInputVal("");
     reset();
   }
 
@@ -90,6 +92,7 @@ export default function Main() {
             readings_on={kanjiData.readings_on}
             readings_kun={kanjiData.readings_kun}
             onInputChange={(newValue) => handleInputChange(index, newValue)}
+            defaultValue={inputVal}
           />
         ))}
       </Suspense>

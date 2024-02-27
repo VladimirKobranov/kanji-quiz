@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useContext } from "react";
+import { StoreContext } from "./store";
 
 export default function KanjiCard({
   kanji,
@@ -8,6 +9,8 @@ export default function KanjiCard({
   value,
   onInputChange,
 }) {
+  const { input } = useContext(StoreContext);
+
   function handleChange(e) {
     if (e.key === "Enter") {
       const newValue = e.target.value;
@@ -23,7 +26,7 @@ export default function KanjiCard({
       <div>Readings (Kun): {readings_kun}</div>
       <input
         type="text"
-        placeholder="text"
+        placeholder={input}
         value={value}
         onKeyDown={handleChange}
       />
