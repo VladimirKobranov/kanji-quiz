@@ -1,81 +1,98 @@
-import React, { useState } from "react";
-import { Box, Collapse, Grid, GridItem } from "@chakra-ui/react";
-import Footer from "./Footer";
-import NavBar from "./NavBar";
-import ContentField from "./ContentField";
-import { BrowserView, MobileView } from "react-device-detect";
-import Icon from "@mdi/react";
-import { mdiDotsHorizontal } from "@mdi/js";
+import { Suspense, useContext, useEffect } from "react";
+import { StoreContext } from "./store";
+import data from "./data.js";
+import KanjiCard from "./KanjiCard";
 
-function Main() {
-  const [show, setShow] = useState(false);
-  const [display, setDisplay] = useState("");
-  const [buttonColor, setButtonColor] = useState("#E6E1E7");
-  const [buttonTextColor, setButtonTextColor] = useState("#01111FFF");
+export default function Main() {
+  const { storeState, setStoreState } = useContext(StoreContext);
+  const { results, makeResults } = useContext(StoreContext);
+  const { reset } = useContext(StoreContext);
+  const { level, setLevel } = useContext(StoreContext);
+  const { input, setInput } = useContext(StoreContext);
 
-  const handleToggle = () => {
-    setShow(!show);
-    setDisplay(display === "none" ? "" : "none");
-    setButtonColor(buttonColor === "#E6E1E7" ? "#014A77FF" : "#E6E1E7");
-    setButtonTextColor(
-      buttonTextColor === "#01111FFF" ? "#E6E1E7FF" : "#01111FFF",
-    );
-  };
+  const kanjiData = Object.keys(data).filter(
+    (key) => data[key]["jlpt_new"] === storeState.jlpt,
+  );
+
+  useEffect(() => {
+    const newData = kanjiData.map((key) => ({
+      kanji: key,
+      meanings: data[key].meanings,
+      readings_on: data[key].readings_on,
+      readings_kun: data[key].readings_kun,
+    }));
+
+    setStoreState((prevState) => ({
+      ...prevState,
+      data: newData,
+    }));
+  }, [storeState.jlpt]);
+
+  function handleResults() {
+    makeResults();
+  }
+
+  function handleReset() {
+    reset();
+  }
+
+  function handleSelectLevel(index) {
+    return () => {
+      setLevel(index);
+    };
+  }
+  function handleSelectInput(type) {
+    return () => {
+      setInput(type);
+    };
+  }
+
+  function handleInputChange(kanjiIndex, newVal) {
+    setStoreState((prevState) => {
+      const updatedAnswers = [...prevState.answers];
+      updatedAnswers[kanjiIndex] = newVal;
+      return {
+        ...prevState,
+        answers: updatedAnswers,
+      };
+    });
+  }
+
+  console.log(storeState);
 
   return (
-    <Box>
-      <BrowserView>
-        <Grid
-          templateAreas={`"nav main" "footer footer" `}
-          gridTemplateRows="1fr 38px"
-          gridTemplateColumns="213px 1fr"
-          height="100%"
-          color="blackAlpha"
-          margin="10px"
-        >
-          <GridItem area="nav" width="213px" height="94vh">
-            <NavBar />
-          </GridItem>
-          <GridItem area="main" gridRow="span 1">
-            <ContentField />
-          </GridItem>
-          <GridItem pl="2" area="footer">
-            <Footer />
-          </GridItem>
-        </Grid>
-      </BrowserView>
-      <MobileView>
-        <Box w="auto" h="90%" m="20px">
-          <Box
-            position="absolute"
-            w="60px"
-            h="60px"
-            color="#101920"
-            bg={buttonColor}
-            borderRadius="50px"
-            top="4px"
-            right="5%"
-            onClick={handleToggle}
-          >
-            <Icon
-              path={mdiDotsHorizontal}
-              size={"60px"}
-              color={buttonTextColor}
-            />
-          </Box>
-          <Box>
-            <Collapse in={show}>
-              <NavBar />
-            </Collapse>
-            <Box display={display}>
-              <ContentField />
-            </Box>
-          </Box>
-          <Footer />
-        </Box>
-      </MobileView>
-    </Box>
+    <div>
+      <Suspense fallback={<div>loading...</div>}>
+        <button onClick={handleResults}>results</button>
+        <div>results: {results}</div>
+        <button onClick={handleReset}>reset</button>
+
+        <div>level: {level}</div>
+        <button onClick={handleSelectLevel(5)}>level 5</button>
+        <button onClick={handleSelectLevel(4)}>level 4</button>
+        <button onClick={handleSelectLevel(3)}>level 3</button>
+        <button onClick={handleSelectLevel(2)}>level 2</button>
+        <button onClick={handleSelectLevel(1)}>level 1</button>
+
+        <div>input: {input}</div>
+        <button onClick={handleSelectInput("meanings")}>meanings</button>
+        <button onClick={handleSelectInput("readings_on")}>readings_on</button>
+        <button onClick={handleSelectInput("readings_kun")}>
+          readings_kun
+        </button>
+
+        {storeState.data.map((kanjiData, index) => (
+          <KanjiCard
+            key={index}
+            index={index + 1}
+            kanji={kanjiData.kanji}
+            meanings={kanjiData.meanings}
+            readings_on={kanjiData.readings_on}
+            readings_kun={kanjiData.readings_kun}
+            onInputChange={(newValue) => handleInputChange(index, newValue)}
+          />
+        ))}
+      </Suspense>
+    </div>
   );
 }
-
-export default Main;
