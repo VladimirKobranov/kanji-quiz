@@ -1,7 +1,16 @@
-import { Suspense, useContext, useEffect, useState } from "react";
+import React, { Suspense, useContext, useEffect, useState } from "react";
 import { StoreContext } from "./store";
 import data from "./data.js";
 import KanjiCard from "./KanjiCard";
+
+function shuffleArray(array) {
+  const shuffledArray = [...array];
+  for (let i = shuffledArray.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffledArray[i], shuffledArray[j]] = [shuffledArray[j], shuffledArray[i]];
+  }
+  return shuffledArray;
+}
 
 export default function Main() {
   const { storeState, setStoreState } = useContext(StoreContext);
@@ -9,15 +18,20 @@ export default function Main() {
   const { reset } = useContext(StoreContext);
   const { level, setLevel } = useContext(StoreContext);
   const { input, setInput } = useContext(StoreContext);
-  const [inputVal, setInputVal] = useState("");
   const { hintMode, setHintMode } = useContext(StoreContext);
-
-  const kanjiData = Object.keys(data).filter(
-    (key) => data[key]["jlpt_new"] === storeState.jlpt,
-  );
+  const [inputVal, setInputVal] = useState("");
+  const [shuffledKanjiData, setShuffledKanjiData] = useState([]);
 
   useEffect(() => {
-    const newData = kanjiData.map((key) => ({
+    const kanjiData = Object.keys(data).filter(
+      (key) => data[key]["jlpt_new"] === storeState.jlpt,
+    );
+    const shuffledData = shuffleArray(kanjiData);
+    setShuffledKanjiData(shuffledData);
+  }, [storeState.jlpt]);
+
+  useEffect(() => {
+    const newData = shuffledKanjiData.map((key) => ({
       kanji: key,
       meanings: data[key].meanings,
       readings_on: data[key].readings_on,
@@ -28,7 +42,7 @@ export default function Main() {
       ...prevState,
       data: newData,
     }));
-  }, [storeState.jlpt]);
+  }, [shuffledKanjiData, setStoreState]);
 
   function handleResults() {
     makeResults();

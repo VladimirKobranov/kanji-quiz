@@ -60,7 +60,12 @@ export const StoreProvider = ({ children }) => {
       }
     }
 
-    const percentage = ((correctCount / totalItems) * 100).toFixed(2);
+    let percentage = ((correctCount / totalItems) * 100).toFixed(2);
+    if (percentage) {
+      percentage = 0;
+    }
+
+    console.log("percentage: ", percentage);
     setResults({
       correct: correctCount,
       total: totalItems,
