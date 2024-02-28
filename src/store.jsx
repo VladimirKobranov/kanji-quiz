@@ -2,7 +2,7 @@ import React, { createContext, useState, useEffect } from "react";
 
 export const StoreContext = createContext();
 export const StoreProvider = ({ children }) => {
-  const [level, setLevel] = useState(5);
+  const [level, setLevel] = useState(0);
   const [input, setInput] = useState("meanings");
   const [results, setResults] = useState(0);
   const [hintMode, setHintMode] = useState(false);
@@ -38,17 +38,22 @@ export const StoreProvider = ({ children }) => {
     let totalItems = 0;
 
     for (let i = 0; i < answers.length; i++) {
-      const answer =
-        mode === "meanings" ? answers[i].toLowerCase() : answers[i];
-      const correctData =
-        mode === "meanings"
-          ? data[i][mode].map((meaning) => meaning.toLowerCase())
-          : data[i][mode];
+      const answer = answers[i];
+      const correctData = data[i][mode];
 
-      if (correctData.includes(answer)) {
-        correctCount++;
+      if (typeof answer !== "undefined") {
+        const answerToCheck =
+          mode === "meanings" ? answer.toLowerCase() : answer;
+        const correctDataToCheck =
+          mode === "meanings"
+            ? correctData.map((meaning) => meaning.toLowerCase())
+            : correctData;
+
+        if (correctDataToCheck.includes(answerToCheck)) {
+          correctCount++;
+        }
+        totalItems++;
       }
-      totalItems++;
     }
 
     const percentage = ((correctCount / totalItems) * 100).toFixed(2);
@@ -57,7 +62,7 @@ export const StoreProvider = ({ children }) => {
 
   const reset = () => {
     setInput("meanings");
-    setLevel(5);
+    setLevel(0);
     setStoreState((prevState) => ({
       ...prevState,
       answers: [],

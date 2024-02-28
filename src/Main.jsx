@@ -90,6 +90,7 @@ export default function Main() {
         <button onClick={handleHintMode}>hint mode</button>
         {hintMode ? <div>Hint mode</div> : null}
 
+        {storeState.data.length === 0 ? <div>select level</div> : null}
         {storeState.data.map((kanjiData, index) => (
           <KanjiCard
             key={index}
