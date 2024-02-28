@@ -5,6 +5,7 @@ export const StoreProvider = ({ children }) => {
   const [level, setLevel] = useState(5);
   const [input, setInput] = useState("meanings");
   const [results, setResults] = useState(0);
+  const [hintMode, setHintMode] = useState(false);
 
   const [storeState, setStoreState] = useState({
     jlpt: level,
@@ -62,8 +63,11 @@ export const StoreProvider = ({ children }) => {
       answers: [],
     }));
     setResults(0);
+    setHintMode(false);
     console.log("reset function");
   };
+
+  console.log("store:", storeState);
 
   return (
     <StoreContext.Provider
@@ -77,6 +81,8 @@ export const StoreProvider = ({ children }) => {
         setLevel,
         input,
         setInput,
+        hintMode,
+        setHintMode,
       }}
     >
       {children}

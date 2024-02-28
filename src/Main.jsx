@@ -10,6 +10,7 @@ export default function Main() {
   const { level, setLevel } = useContext(StoreContext);
   const { input, setInput } = useContext(StoreContext);
   const [inputVal, setInputVal] = useState("");
+  const { hintMode, setHintMode } = useContext(StoreContext);
 
   const kanjiData = Object.keys(data).filter(
     (key) => data[key]["jlpt_new"] === storeState.jlpt,
@@ -49,6 +50,11 @@ export default function Main() {
     };
   }
 
+  function handleHintMode() {
+    setHintMode(!hintMode);
+    console.log("store hint:", hintMode);
+  }
+
   function handleInputChange(kanjiIndex, newVal) {
     setStoreState((prevState) => {
       const updatedAnswers = [...prevState.answers];
@@ -59,8 +65,6 @@ export default function Main() {
       };
     });
   }
-
-  console.log(storeState);
 
   return (
     <div>
@@ -82,6 +86,9 @@ export default function Main() {
         <button onClick={handleSelectInput("readings_kun")}>
           readings_kun
         </button>
+
+        <button onClick={handleHintMode}>hint mode</button>
+        {hintMode ? <div>Hint mode</div> : null}
 
         {storeState.data.map((kanjiData, index) => (
           <KanjiCard
