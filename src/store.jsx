@@ -4,7 +4,11 @@ export const StoreContext = createContext();
 export const StoreProvider = ({ children }) => {
   const [level, setLevel] = useState(0);
   const [input, setInput] = useState("meanings");
-  const [results, setResults] = useState(0);
+  const [results, setResults] = useState({
+    correct: 0,
+    total: 0,
+    percentage: 0,
+  });
   const [hintMode, setHintMode] = useState(false);
 
   const [storeState, setStoreState] = useState({
@@ -57,7 +61,11 @@ export const StoreProvider = ({ children }) => {
     }
 
     const percentage = ((correctCount / totalItems) * 100).toFixed(2);
-    setResults(percentage + "%");
+    setResults({
+      correct: correctCount,
+      total: totalItems,
+      percentage: percentage,
+    });
   };
 
   const reset = () => {

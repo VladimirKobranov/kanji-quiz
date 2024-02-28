@@ -70,7 +70,11 @@ export default function Main() {
     <div>
       <Suspense fallback={<div>loading...</div>}>
         <button onClick={handleResults}>results</button>
-        <div>results: {results}</div>
+        <div>
+          {results
+            ? `correct: ${results.correct}, total: ${results.total}, percentage: ${results.percentage}%`
+            : null}
+        </div>
         <button onClick={handleReset}>reset</button>
 
         <div>level: {level}</div>

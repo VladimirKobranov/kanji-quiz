@@ -18,6 +18,13 @@ export default function KanjiCard({
       onInputChange(newValue);
     }
   }
+  function handleBlur(e) {
+    const newValue = e.target.value;
+    if (!newValue) {
+      return;
+    }
+    onInputChange(newValue);
+  }
 
   useEffect(() => {}, [hintMode]);
 
@@ -26,15 +33,16 @@ export default function KanjiCard({
       <div>Kanji: {kanji}</div>
       {hintMode ? (
         <div>
-          <div>Meanings: {meanings}</div>
-          <div>Readings (On): {readings_on}</div>
-          <div>Readings (Kun): {readings_kun}</div>
+          <div>Meanings: {meanings.join(", ")}</div>
+          <div>Readings (On): {readings_on.join("、 ")}</div>
+          <div>Readings (Kun): {readings_kun.join("、 ")}</div>
         </div>
       ) : null}
       <input
         type="text"
         placeholder={input}
         value={value}
+        onBlur={handleBlur}
         onKeyDown={handleChange}
       />
     </div>
