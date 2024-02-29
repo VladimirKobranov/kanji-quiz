@@ -1,5 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import { StoreContext } from "./store";
+import { Box, Text, Input } from "@chakra-ui/react";
 
 export default function KanjiCard({
   kanji,
@@ -29,22 +30,22 @@ export default function KanjiCard({
   useEffect(() => {}, [hintMode]);
 
   return (
-    <div>
-      <div>Kanji: {kanji}</div>
+    <Box>
+      <Text>Kanji: {kanji}</Text>
       {hintMode ? (
-        <div>
-          <div>Meanings: {meanings.join(", ")}</div>
-          <div>Readings (On): {readings_on.join("、 ")}</div>
-          <div>Readings (Kun): {readings_kun.join("、 ")}</div>
-        </div>
+        <Box>
+          <Text>Meanings: {meanings.join(", ")}</Text>
+          <Text>Readings (On): {readings_on.join("、 ")}</Text>
+          <Text>Readings (Kun): {readings_kun.join("、 ")}</Text>
+        </Box>
       ) : null}
-      <input
+      <Input
         type="text"
         placeholder={input}
         value={value}
         onBlur={handleBlur}
         onKeyDown={handleChange}
       />
-    </div>
+    </Box>
   );
 }

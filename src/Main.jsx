@@ -2,6 +2,7 @@ import React, { Suspense, useContext, useEffect, useState } from "react";
 import { StoreContext } from "./store";
 import data from "./data.js";
 import KanjiCard from "./KanjiCard";
+import { Box, Text, Button } from "@chakra-ui/react";
 
 function shuffleArray(array) {
   const shuffledArray = [...array];
@@ -81,34 +82,34 @@ export default function Main() {
   }
 
   return (
-    <div>
-      <Suspense fallback={<div>loading...</div>}>
-        <button onClick={handleResults}>results</button>
-        <div>
+    <Box>
+      <Suspense fallback={<Text>loading...</Text>}>
+        <Button onClick={handleResults}>results</Button>
+        <Text>
           {results
             ? `correct: ${results.correct}, total: ${results.total}, percentage: ${results.percentage}%`
             : null}
-        </div>
-        <button onClick={handleReset}>reset</button>
+        </Text>
+        <Button onClick={handleReset}>reset</Button>
 
-        <div>level: {level}</div>
-        <button onClick={handleSelectLevel(5)}>level 5</button>
-        <button onClick={handleSelectLevel(4)}>level 4</button>
-        <button onClick={handleSelectLevel(3)}>level 3</button>
-        <button onClick={handleSelectLevel(2)}>level 2</button>
-        <button onClick={handleSelectLevel(1)}>level 1</button>
+        <Text>level: {level}</Text>
+        <Button onClick={handleSelectLevel(5)}>level 5</Button>
+        <Button onClick={handleSelectLevel(4)}>level 4</Button>
+        <Button onClick={handleSelectLevel(3)}>level 3</Button>
+        <Button onClick={handleSelectLevel(2)}>level 2</Button>
+        <Button onClick={handleSelectLevel(1)}>level 1</Button>
 
-        <div>input: {input}</div>
-        <button onClick={handleSelectInput("meanings")}>meanings</button>
-        <button onClick={handleSelectInput("readings_on")}>readings_on</button>
-        <button onClick={handleSelectInput("readings_kun")}>
+        <Text>input: {input}</Text>
+        <Button onClick={handleSelectInput("meanings")}>meanings</Button>
+        <Button onClick={handleSelectInput("readings_on")}>readings_on</Button>
+        <Button onClick={handleSelectInput("readings_kun")}>
           readings_kun
-        </button>
+        </Button>
 
-        <button onClick={handleHintMode}>hint mode</button>
-        {hintMode ? <div>Hint mode</div> : null}
+        <Button onClick={handleHintMode}>hint mode</Button>
+        {hintMode ? <Text>Hint mode</Text> : null}
 
-        {storeState.data.length === 0 ? <div>select level</div> : null}
+        {storeState.data.length === 0 ? <Text>select level</Text> : null}
         {storeState.data.map((kanjiData, index) => (
           <KanjiCard
             key={index}
@@ -122,6 +123,6 @@ export default function Main() {
           />
         ))}
       </Suspense>
-    </div>
+    </Box>
   );
 }
