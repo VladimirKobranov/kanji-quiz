@@ -2,7 +2,7 @@ import React, { Suspense, useContext, useEffect, useState } from "react";
 import { StoreContext } from "./store";
 import data from "./data.js";
 import KanjiCard from "./KanjiCard";
-import { Box, Text, Button } from "@chakra-ui/react";
+import { Box, Text, Button, Grid, GridItem, Center } from "@chakra-ui/react";
 
 function shuffleArray(array) {
   const shuffledArray = [...array];
@@ -79,6 +79,7 @@ export default function Main() {
         answers: updatedAnswers,
       };
     });
+    handleResults();
   }
 
   return (
@@ -110,18 +111,27 @@ export default function Main() {
         {hintMode ? <Text>Hint mode</Text> : null}
 
         {storeState.data.length === 0 ? <Text>select level</Text> : null}
-        {storeState.data.map((kanjiData, index) => (
-          <KanjiCard
-            key={index}
-            index={index + 1}
-            kanji={kanjiData.kanji}
-            meanings={kanjiData.meanings}
-            readings_on={kanjiData.readings_on}
-            readings_kun={kanjiData.readings_kun}
-            onInputChange={(newValue) => handleInputChange(index, newValue)}
-            defaultValue={inputVal}
-          />
-        ))}
+        <Center>
+          <Grid templateColumns="repeat(3, 1fr)" gap={3}>
+            {storeState.data.map((kanjiData, index) => (
+              <GridItem key={index + 1}>
+                <KanjiCard
+                  key={index}
+                  index={index + 1}
+                  kanji={kanjiData.kanji}
+                  meanings={kanjiData.meanings}
+                  readings_on={kanjiData.readings_on}
+                  readings_kun={kanjiData.readings_kun}
+                  onInputChange={(newValue) =>
+                    handleInputChange(index, newValue)
+                  }
+                  defaultValue={inputVal}
+                  isCorrect={results.state ? results.state[index] : null}
+                />
+              </GridItem>
+            ))}
+          </Grid>
+        </Center>
       </Suspense>
     </Box>
   );

@@ -1,6 +1,6 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { StoreContext } from "./store";
-import { Box, Text, Input } from "@chakra-ui/react";
+import { Box, Text, Input, Center } from "@chakra-ui/react";
 
 export default function KanjiCard({
   kanji,
@@ -9,6 +9,7 @@ export default function KanjiCard({
   readings_kun,
   value,
   onInputChange,
+  isCorrect,
 }) {
   const { input } = useContext(StoreContext);
   const { hintMode } = useContext(StoreContext);
@@ -27,25 +28,37 @@ export default function KanjiCard({
     onInputChange(newValue);
   }
 
-  useEffect(() => {}, [hintMode]);
+  function handleCorrect() {
+    if (isCorrect === true) {
+      return "blue";
+    } else if (isCorrect === false) {
+      return "red";
+    } else {
+      return "gray";
+    }
+  }
 
   return (
-    <Box>
-      <Text>Kanji: {kanji}</Text>
-      {hintMode ? (
-        <Box>
-          <Text>Meanings: {meanings.join(", ")}</Text>
-          <Text>Readings (On): {readings_on.join("、 ")}</Text>
-          <Text>Readings (Kun): {readings_kun.join("、 ")}</Text>
-        </Box>
-      ) : null}
-      <Input
-        type="text"
-        placeholder={input}
-        value={value}
-        onBlur={handleBlur}
-        onKeyDown={handleChange}
-      />
-    </Box>
+    <Center>
+      <Box w="120px" h="auto" bg={handleCorrect}>
+        <Text fontSize="6xl" textAlign="center">
+          {kanji}
+        </Text>
+        {hintMode ? (
+          <Box>
+            <Text>Meanings: {meanings.join(", ")}</Text>
+            <Text>Readings (On): {readings_on.join("、 ")}</Text>
+            <Text>Readings (Kun): {readings_kun.join("、 ")}</Text>
+          </Box>
+        ) : null}
+        <Input
+          type="text"
+          placeholder={input}
+          value={value}
+          onBlur={handleBlur}
+          onKeyDown={handleChange}
+        />
+      </Box>
+    </Center>
   );
 }
