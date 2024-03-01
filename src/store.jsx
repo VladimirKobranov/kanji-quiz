@@ -8,7 +8,6 @@ export const StoreProvider = ({ children }) => {
     correct: 0,
     total: 0,
     percentage: 0,
-    state: [],
   });
   const [hintMode, setHintMode] = useState(false);
 
@@ -24,6 +23,7 @@ export const StoreProvider = ({ children }) => {
       },
     ],
     answers: [],
+    results: [],
   });
 
   useEffect(() => {
@@ -35,53 +35,28 @@ export const StoreProvider = ({ children }) => {
   }, [level, input]);
 
   const makeResults = () => {
-    const answers = storeState.answers;
-    const mode = storeState.input;
-    const data = storeState.data;
+    const resultState = storeState.results;
 
     let correctCount = 0;
     let totalItems = 0;
-    const resultState = [];
 
-    for (let i = 0; i < answers.length; i++) {
-      const correctData = data[i][mode];
-      let isCorrect;
-
-      if (answers[i]) {
-        const answerToCheck =
-          mode === "meanings" ? answers[i].toLowerCase() : answers[i];
-        const correctDataToCheck =
-          mode === "meanings"
-            ? correctData.map((meaning) => meaning.toLowerCase())
-            : correctData;
-
-        if (correctDataToCheck.includes(answerToCheck)) {
-          correctCount++;
-          isCorrect = true;
-        } else {
-          isCorrect = false;
-        }
-        totalItems++;
-      } else {
-        isCorrect = undefined;
+    for (let i = 0; i < resultState.length; i++) {
+      if (resultState[i] === true) {
+        correctCount++;
       }
-
-      resultState.push(isCorrect);
+      if (resultState[i] !== undefined) {
+        totalItems++;
+      }
     }
 
-    let percentage = ((correctCount / totalItems) * 100).toFixed(2);
-    if (isNaN(percentage)) {
-      percentage = 0;
-    }
+    const percentage =
+      totalItems === 0 ? 0 : ((correctCount / totalItems) * 100).toFixed(2);
 
-    console.log("percentage: ", percentage);
     setResults({
       correct: correctCount,
       total: totalItems,
       percentage: percentage,
-      state: resultState,
     });
-    console.log("results:", results);
   };
 
   const reset = () => {
@@ -90,14 +65,15 @@ export const StoreProvider = ({ children }) => {
     setStoreState((prevState) => ({
       ...prevState,
       answers: [],
+      results: [],
     }));
     setResults({
       correct: 0,
       total: 0,
       percentage: 0,
+      state: [],
     });
     setHintMode(false);
-    console.log("reset function");
   };
 
   console.log("store:", storeState);

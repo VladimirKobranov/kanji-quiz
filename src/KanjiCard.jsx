@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
 import { StoreContext } from "./store";
 import { Box, Text, Input, Center } from "@chakra-ui/react";
 
@@ -57,6 +57,8 @@ export default function KanjiCard({
           value={value}
           onBlur={handleBlur}
           onKeyDown={handleChange}
+          textAlign="center"
+          name="answer"
         />
       </Box>
     </Center>

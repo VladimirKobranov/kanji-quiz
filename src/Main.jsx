@@ -71,19 +71,34 @@ export default function Main() {
   }
 
   function handleInputChange(kanjiIndex, newVal) {
+    const currentKanjiData = storeState.data[kanjiIndex];
+    const cleanedInput = newVal.trim();
+    const mode = storeState.input;
+
+    let isCorrect;
+    if (mode === "meanings") {
+      isCorrect = currentKanjiData[mode]
+        .map((meaning) => meaning.toLowerCase())
+        .includes(cleanedInput.toLowerCase());
+    } else {
+      isCorrect = currentKanjiData[mode].includes(cleanedInput);
+    }
+
     setStoreState((prevState) => {
       const updatedAnswers = [...prevState.answers];
       updatedAnswers[kanjiIndex] = newVal;
+      const updatedResults = [...prevState.results];
+      updatedResults[kanjiIndex] = isCorrect;
       return {
         ...prevState,
         answers: updatedAnswers,
+        results: updatedResults,
       };
     });
-    handleResults();
   }
 
   return (
-    <Box>
+    <Box m="10px">
       <Suspense fallback={<Text>loading...</Text>}>
         <Button onClick={handleResults}>results</Button>
         <Text>
@@ -114,10 +129,10 @@ export default function Main() {
         <Center>
           <Grid templateColumns="repeat(3, 1fr)" gap={3}>
             {storeState.data.map((kanjiData, index) => (
-              <GridItem key={index + 1}>
+              <GridItem key={index}>
                 <KanjiCard
                   key={index}
-                  index={index + 1}
+                  index={index}
                   kanji={kanjiData.kanji}
                   meanings={kanjiData.meanings}
                   readings_on={kanjiData.readings_on}
@@ -126,7 +141,9 @@ export default function Main() {
                     handleInputChange(index, newValue)
                   }
                   defaultValue={inputVal}
-                  isCorrect={results.state ? results.state[index] : null}
+                  isCorrect={
+                    storeState.results ? storeState.results[index] : null
+                  }
                 />
               </GridItem>
             ))}
