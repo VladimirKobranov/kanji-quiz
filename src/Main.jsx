@@ -4,22 +4,19 @@ import data from "./data.js";
 import KanjiCard from "./KanjiCard";
 import {
   Box,
-  Text,
   Button,
-  Grid,
-  GridItem,
   Center,
-  VStack,
-  calc,
-} from "@chakra-ui/react";
-import {
   Drawer,
   DrawerBody,
+  DrawerContent,
   DrawerFooter,
   DrawerHeader,
   DrawerOverlay,
-  DrawerContent,
+  Grid,
+  GridItem,
+  Text,
   useDisclosure,
+  VStack,
 } from "@chakra-ui/react";
 import Icon from "@mdi/react";
 import { mdiMenu } from "@mdi/js";
@@ -81,6 +78,7 @@ export default function Main() {
       setLevel(index);
     };
   }
+
   function handleSelectInput(type) {
     return () => {
       setInput(type);
@@ -156,47 +154,72 @@ export default function Main() {
           </DrawerHeader>
           <DrawerBody>
             <VStack>
-              <Box>
+              <Box mb="20px">
                 <VStack>
                   <Text className="HeaderMain">Choose level</Text>
-                  <Button onClick={handleSelectLevel(5)} className="Button">
+                  <Button
+                    onClick={handleSelectLevel(5)}
+                    className="button"
+                    bg={storeState.jlpt === 5 ? "#014A77FF" : null}
+                    color={storeState.jlpt === 5 ? "#ffffff" : null}
+                  >
                     level 5
                   </Button>
-                  <Button onClick={handleSelectLevel(4)} className="Button">
+                  <Button
+                    onClick={handleSelectLevel(4)}
+                    className="button"
+                    bg={storeState.jlpt === 4 ? "#014A77FF" : null}
+                    color={storeState.jlpt === 4 ? "#ffffff" : null}
+                  >
                     level 4
                   </Button>
-                  <Button onClick={handleSelectLevel(3)} className="Button">
+                  <Button
+                    onClick={handleSelectLevel(3)}
+                    className="button"
+                    bg={storeState.jlpt === 3 ? "#014A77FF" : null}
+                    color={storeState.jlpt === 3 ? "#ffffff" : null}
+                  >
                     level 3
                   </Button>
-                  <Button onClick={handleSelectLevel(2)} className="Button">
+                  <Button
+                    onClick={handleSelectLevel(2)}
+                    className="button"
+                    bg={storeState.jlpt === 2 ? "#014A77FF" : null}
+                    color={storeState.jlpt === 2 ? "#ffffff" : null}
+                  >
                     level 2
                   </Button>
-                  <Button onClick={handleSelectLevel(1)} className="Button">
+                  <Button
+                    onClick={handleSelectLevel(1)}
+                    className="button"
+                    bg={storeState.jlpt === 1 ? "#014A77FF" : null}
+                    color={storeState.jlpt === 1 ? "#ffffff" : null}
+                  >
                     level 1
                   </Button>
                 </VStack>
               </Box>
 
-              <Box>
+              <Box mb="20px">
                 <VStack>
                   <Text className="HeaderMain">Choose input</Text>
                   <Button
                     onClick={handleSelectInput("meanings")}
-                    className="Button"
+                    className="button"
                   >
                     meanings
                   </Button>
                   <Button
                     onClick={handleSelectInput("readings_on")}
-                    className="Button"
+                    className="button"
                   >
-                    readings_on
+                    onyomi
                   </Button>
                   <Button
                     onClick={handleSelectInput("readings_kun")}
-                    className="Button"
+                    className="button"
                   >
-                    readings_kun
+                    Kunyomi
                   </Button>
                 </VStack>
               </Box>
@@ -206,17 +229,25 @@ export default function Main() {
                   <Button
                     onClick={handleHintMode}
                     bg={hintMode ? "#014A77FF" : null}
-                    className="Button"
+                    color={hintMode ? "#ffffff" : null}
+                    className="button"
                   >
                     hint mode
                   </Button>
-                  <Button onClick={handleReset} className="Button" bg="#AF282F">
+                  <Button
+                    onClick={handleReset}
+                    className="button"
+                    bg="#AF282F"
+                    color="#ffffff"
+                  >
                     reset
                   </Button>
                   <Button
                     onClick={handleResults}
-                    className="Button"
+                    className="button"
                     bg="#014A77FF"
+                    color="#ffffff"
+                    mb="20px"
                   >
                     results
                   </Button>
@@ -230,7 +261,7 @@ export default function Main() {
               </Box>
             </VStack>
           </DrawerBody>
-          <DrawerFooter justifyContent="center" className="footer">
+          <DrawerFooter>
             <Footer />
           </DrawerFooter>
         </DrawerContent>
@@ -247,15 +278,22 @@ export default function Main() {
             <Text className="SelectedInput">
               {storeState.data.length === 0
                 ? "Select input"
-                : `${storeState.input}`}
+                : storeState.input === "meanings"
+                  ? "meanings"
+                  : storeState.input === "readings_on"
+                    ? "onyomi"
+                    : storeState.input === "readings_kun"
+                      ? "kunyomi"
+                      : "Unknown input type"}
             </Text>
+
             <Text className="hint">{hintMode ? "Hint mode" : null}</Text>
           </VStack>
         </Box>
         <Center>
           {storeState.data.length === 0 ? (
             <Box>
-              <Text>Wellcome</Text>
+              <Text>Welcome</Text>
               <Text>info message</Text>
             </Box>
           ) : null}

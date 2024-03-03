@@ -1,17 +1,17 @@
 import React, { useContext, useState } from "react";
 import { StoreContext } from "./store";
-import { Box, Text, Input, Center } from "@chakra-ui/react";
 import {
+  Box,
+  Center,
+  Input,
   Popover,
-  PopoverTrigger,
+  PopoverArrow,
+  PopoverBody,
+  PopoverCloseButton,
   PopoverContent,
   PopoverHeader,
-  PopoverBody,
-  PopoverFooter,
-  PopoverArrow,
-  PopoverCloseButton,
-  PopoverAnchor,
-  Button,
+  PopoverTrigger,
+  Text,
 } from "@chakra-ui/react";
 import "./style.css";
 
@@ -36,6 +36,7 @@ export default function KanjiCard({
       setIsDisabled(true);
     }
   }
+
   function handleBlur(e) {
     const newValue = e.target.value;
     if (!newValue) {
