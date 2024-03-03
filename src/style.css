@@ -3,3 +3,167 @@
   top: 20px;
   right: 20px;
 }
+
+.gridField {
+  overflow-y: auto;
+  max-height: calc(100vh - 120px);
+}
+.gridFieldHint {
+  overflow-y: auto;
+  max-height: calc(100vh - 136px);
+}
+
+.footer {
+  font-family: "Roboto", sans-serif;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 15px;
+  line-height: 18px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  font-variant: all-small-caps;
+  color: #868686;
+}
+
+.TitleKanji {
+  font-family: "Noto Sans JP", sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 35px;
+  line-height: 45px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #101920;
+}
+
+.TitleMain {
+  position: relative;
+  top: -15px;
+  font-family: "Roboto", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 25px;
+  line-height: 23px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  font-variant: all-small-caps;
+  color: #868686;
+}
+
+.SelectedLevel {
+  width: auto;
+  height: auto;
+
+  font-family: "Roboto", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 25px;
+  line-height: 41px;
+
+  display: flex;
+  text-align: left;
+  text-transform: uppercase;
+  color: #101920;
+}
+
+.SelectedInput {
+  width: auto;
+  height: auto;
+
+  font-family: "Roboto", sans-serif;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 25px;
+  line-height: 41px;
+
+  display: flex;
+  text-align: left;
+  text-transform: uppercase;
+
+  color: #101920;
+}
+.hint {
+  font-family: "Roboto", sans-serif;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 15px;
+  line-height: 18px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  font-variant: all-small-caps;
+  color: #868686;
+}
+
+.HeaderMain {
+  font-family: "Roboto", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 35px;
+  line-height: 23px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  font-variant: all-small-caps;
+  padding-bottom: 10px;
+}
+
+.results {
+  font-family: "Roboto", sans-serif;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 20px;
+  line-height: 18px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  font-variant: all-small-caps;
+  color: #868686;
+}
+
+.Button {
+  width: 200px;
+  height: 35px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: "Roboto", sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 25px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  font-variant: all-small-caps;
+}
+
+.CardKanji {
+  font-family: "Noto Sans JP", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 80px;
+  line-height: 116px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  /* color: #101920; */
+}
+
+.CardText {
+  font-family: "Roboto", sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 19px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  font-variant: all-small-caps;
+  justify-content: center;
+  /* color: #d9d7dc; */
+}

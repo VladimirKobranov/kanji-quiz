@@ -10,6 +10,7 @@ import {
   GridItem,
   Center,
   VStack,
+  calc,
 } from "@chakra-ui/react";
 import {
   Drawer,
@@ -23,6 +24,7 @@ import {
 import Icon from "@mdi/react";
 import { mdiMenu } from "@mdi/js";
 import "./style.css";
+import Footer from "./Footer";
 
 function shuffleArray(array) {
   const shuffledArray = [...array];
@@ -144,37 +146,56 @@ export default function Main() {
             onClick={onClose}
             className="menuIcon"
           />
-          <DrawerHeader bg="tomato">
+          <DrawerHeader p="0">
             <Center>
-              <VStack>
-                <Text>漢字 クイズ</Text>
-                <Text>Kanji Quiz</Text>
+              <VStack mt="20px">
+                <Text className="TitleKanji">漢字 クイズ</Text>
+                <Text className="TitleMain">Kanji Quiz</Text>
               </VStack>
             </Center>
           </DrawerHeader>
-          <DrawerBody bg="gray.400">
+          <DrawerBody>
             <VStack>
               <Box>
                 <VStack>
-                  <Text>level: {level}</Text>
-                  <Button onClick={handleSelectLevel(5)}>level 5</Button>
-                  <Button onClick={handleSelectLevel(4)}>level 4</Button>
-                  <Button onClick={handleSelectLevel(3)}>level 3</Button>
-                  <Button onClick={handleSelectLevel(2)}>level 2</Button>
-                  <Button onClick={handleSelectLevel(1)}>level 1</Button>
+                  <Text className="HeaderMain">Choose level</Text>
+                  <Button onClick={handleSelectLevel(5)} className="Button">
+                    level 5
+                  </Button>
+                  <Button onClick={handleSelectLevel(4)} className="Button">
+                    level 4
+                  </Button>
+                  <Button onClick={handleSelectLevel(3)} className="Button">
+                    level 3
+                  </Button>
+                  <Button onClick={handleSelectLevel(2)} className="Button">
+                    level 2
+                  </Button>
+                  <Button onClick={handleSelectLevel(1)} className="Button">
+                    level 1
+                  </Button>
                 </VStack>
               </Box>
 
               <Box>
                 <VStack>
-                  <Text>input: {input}</Text>
-                  <Button onClick={handleSelectInput("meanings")}>
+                  <Text className="HeaderMain">Choose input</Text>
+                  <Button
+                    onClick={handleSelectInput("meanings")}
+                    className="Button"
+                  >
                     meanings
                   </Button>
-                  <Button onClick={handleSelectInput("readings_on")}>
+                  <Button
+                    onClick={handleSelectInput("readings_on")}
+                    className="Button"
+                  >
                     readings_on
                   </Button>
-                  <Button onClick={handleSelectInput("readings_kun")}>
+                  <Button
+                    onClick={handleSelectInput("readings_kun")}
+                    className="Button"
+                  >
                     readings_kun
                   </Button>
                 </VStack>
@@ -182,42 +203,53 @@ export default function Main() {
 
               <Box>
                 <VStack>
-                  <Button onClick={handleResults}>results</Button>
-                  <Text>
+                  <Button
+                    onClick={handleHintMode}
+                    bg={hintMode ? "#014A77FF" : null}
+                    className="Button"
+                  >
+                    hint mode
+                  </Button>
+                  <Button onClick={handleReset} className="Button" bg="#AF282F">
+                    reset
+                  </Button>
+                  <Button
+                    onClick={handleResults}
+                    className="Button"
+                    bg="#014A77FF"
+                  >
+                    results
+                  </Button>
+                  <Text className="HeaderMain">Accuracy</Text>
+                  <Text className="results">
                     {results
-                      ? `correct: ${results.correct}, total: ${results.total}, percentage: ${results.percentage}%`
+                      ? `${results.correct}/${results.total}/${results.percentage}%`
                       : null}
                   </Text>
                 </VStack>
               </Box>
-
-              <Button onClick={handleReset}>reset</Button>
-
-              <Box>
-                <Button onClick={handleHintMode}>hint mode</Button>
-              </Box>
             </VStack>
           </DrawerBody>
-          <DrawerFooter justifyContent="center" bg="cyan">
-            copyright vk | 2024
+          <DrawerFooter justifyContent="center" className="footer">
+            <Footer />
           </DrawerFooter>
         </DrawerContent>
       </Drawer>
 
       <Suspense fallback={<Text>loading...</Text>}>
-        <Box bg="tomato">
-          <VStack>
-            {storeState.data.length === 0 ? (
-              <Text>Select level</Text>
-            ) : (
-              <Text>N{storeState.jlpt} selected</Text>
-            )}
-            {storeState.data.length === 0 ? (
-              <Text>Select input</Text>
-            ) : (
-              <Text>{storeState.input} selected</Text>
-            )}
-            {hintMode ? <Text>Hint mode</Text> : null}
+        <Box>
+          <VStack alignItems="start">
+            <Text className="SelectedLevel">
+              {storeState.data.length === 0
+                ? "Select level"
+                : `N${storeState.jlpt}`}
+            </Text>
+            <Text className="SelectedInput">
+              {storeState.data.length === 0
+                ? "Select input"
+                : `${storeState.input}`}
+            </Text>
+            <Text className="hint">{hintMode ? "Hint mode" : null}</Text>
           </VStack>
         </Box>
         <Center>
@@ -227,7 +259,11 @@ export default function Main() {
               <Text>info message</Text>
             </Box>
           ) : null}
-          <Grid templateColumns="repeat(3, 1fr)" gap={3}>
+          <Grid
+            templateColumns="repeat(3, 1fr)"
+            gap={3}
+            className={hintMode ? "gridFieldHint" : "gridField"}
+          >
             {storeState.data.map((kanjiData, index) => (
               <GridItem key={index}>
                 <KanjiCard
