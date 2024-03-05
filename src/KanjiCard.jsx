@@ -12,6 +12,7 @@ import {
   PopoverHeader,
   PopoverTrigger,
   Text,
+  Flex,
 } from "@chakra-ui/react";
 import "./style.css";
 
@@ -64,21 +65,49 @@ export default function KanjiCard({
             <Popover>
               <PopoverTrigger>
                 <Center role="button" tabIndex="0" children="Click">
-                  {/* <Button w="90px" h="120px" variant="ghost"> */}
                   <Text fontSize="6xl" textAlign="center" className="KanjiCard">
                     {kanji}
                   </Text>
-                  {/* </Button> */}
                 </Center>
               </PopoverTrigger>
+              {/* <PopoverContent> */}
+              {/*   <PopoverArrow /> */}
+              {/*   <PopoverCloseButton /> */}
+              {/*   <PopoverHeader bg="tomato">Hint!</PopoverHeader> */}
+              {/*   <PopoverBody> */}
+              {/*     <Text>Meanings: {meanings.join(", ")}</Text> */}
+              {/*     <Text>Readings (On): {readings_on.join("、 ")}</Text> */}
+              {/*     <Text>Readings (Kun): {readings_kun.join("、 ")}</Text> */}
+              {/*   </PopoverBody> */}
+              {/* </PopoverContent> */}
               <PopoverContent>
                 <PopoverArrow />
-                <PopoverCloseButton />
-                <PopoverHeader bg="tomato">Hint!</PopoverHeader>
-                <PopoverBody>
-                  <Text>Meanings: {meanings.join(", ")}</Text>
-                  <Text>Readings (On): {readings_on.join("、 ")}</Text>
-                  <Text>Readings (Kun): {readings_kun.join("、 ")}</Text>
+                <PopoverCloseButton size="lg" color="#FCFCFDFF" />
+                <PopoverHeader
+                  fontSize="lg"
+                  fontWeight="700"
+                  bg="#014A77"
+                  color="#FCFCFDFF"
+                  rounded="5px"
+                >
+                  Hint
+                </PopoverHeader>
+                <PopoverBody rounded="5px">
+                  <Flex>
+                    <Box mr="15px" p="5px">
+                      <Text className="hintHeaderKanji" rounded="2px">
+                        {kanji}
+                      </Text>
+                    </Box>
+                    <Box>
+                      <Text fontWeight="700">Meaning:</Text>
+                      <Text>{meanings.join(", ")}</Text>
+                      <Text fontWeight="700">Onyomi:</Text>
+                      <Text>{readings_on.join("、 ")}</Text>
+                      <Text fontWeight="700">Kunyomi:</Text>
+                      <Text>{readings_kun.join("、")}</Text>
+                    </Box>
+                  </Flex>
                 </PopoverBody>
               </PopoverContent>
             </Popover>

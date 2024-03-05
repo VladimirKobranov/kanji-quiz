@@ -1,171 +1,202 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
 .menuIcon {
-    position: fixed;
-    top: 20px;
-    right: 20px;
+  position: fixed;
+  top: 20px;
+  right: 20px;
 }
 
 .gridField {
-    overflow-y: auto;
-    max-height: calc(100vh - 120px);
+  overflow-y: auto;
+  max-height: calc(100vh - 120px);
 }
 
 .gridFieldHint {
-    overflow-y: auto;
-    max-height: calc(100vh - 136px);
+  overflow-y: auto;
+  max-height: calc(100vh - 136px);
 }
 
 .footer {
-    font-family: "Roboto", sans-serif;
-    font-style: normal;
-    font-weight: 300;
-    font-size: 15px;
-    line-height: 18px;
-    display: flex;
-    align-items: center;
-    text-align: center;
-    font-variant: all-small-caps;
-    color: #868686;
+  font-family: "Roboto", sans-serif;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 15px;
+  line-height: 18px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  font-variant: all-small-caps;
+  color: #868686;
 }
 
 .TitleKanji {
-    font-family: "Noto Sans JP", sans-serif;
-    font-style: normal;
-    font-weight: 700;
-    font-size: 35px;
-    line-height: 45px;
-    display: flex;
-    align-items: center;
-    text-align: center;
-    color: #101920;
+  font-family: "Noto Sans JP", sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 35px;
+  line-height: 45px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #101920;
 }
 
 .TitleMain {
-    position: relative;
-    top: -15px;
-    font-family: "Roboto", sans-serif;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 25px;
-    line-height: 23px;
-    display: flex;
-    align-items: center;
-    text-align: center;
-    font-variant: all-small-caps;
-    color: #868686;
+  position: relative;
+  top: -15px;
+  font-family: "Roboto", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 25px;
+  line-height: 23px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  font-variant: all-small-caps;
+  color: #868686;
 }
 
 .SelectedLevel {
-    width: auto;
-    height: auto;
+  width: auto;
+  height: auto;
 
-    font-family: "Roboto", sans-serif;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 25px;
-    line-height: 41px;
+  font-family: "Roboto", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 25px;
+  line-height: 41px;
 
-    display: flex;
-    text-align: left;
-    text-transform: uppercase;
-    color: #101920;
+  display: flex;
+  text-align: left;
+  text-transform: uppercase;
+  color: #101920;
 }
 
 .SelectedInput {
-    width: auto;
-    height: auto;
+  width: auto;
+  height: auto;
 
-    font-family: "Roboto", sans-serif;
-    font-style: normal;
-    font-weight: 300;
-    font-size: 25px;
-    line-height: 41px;
+  font-family: "Roboto", sans-serif;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 25px;
+  line-height: 41px;
 
-    display: flex;
-    text-align: left;
-    text-transform: uppercase;
+  display: flex;
+  text-align: left;
+  text-transform: uppercase;
 
-    color: #101920;
+  color: #101920;
 }
 
 .hint {
-    font-family: "Roboto", sans-serif;
-    font-style: normal;
-    font-weight: 300;
-    font-size: 15px;
-    line-height: 18px;
-    display: flex;
-    align-items: center;
-    text-align: center;
-    font-variant: all-small-caps;
-    color: #868686;
+  font-family: "Roboto", sans-serif;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 15px;
+  line-height: 18px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  font-variant: all-small-caps;
+  color: #868686;
 }
 
 .HeaderMain {
-    font-family: "Roboto", sans-serif;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 35px;
-    line-height: 23px;
-    display: flex;
-    align-items: center;
-    text-align: center;
-    justify-content: center;
-    font-variant: all-small-caps;
-    padding-bottom: 10px;
+  font-family: "Roboto", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 35px;
+  line-height: 23px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  font-variant: all-small-caps;
+  padding-bottom: 10px;
 }
 
 .results {
-    font-family: "Roboto", sans-serif;
-    font-style: normal;
-    font-weight: 300;
-    font-size: 20px;
-    line-height: 18px;
-    display: flex;
-    align-items: center;
-    text-align: center;
-    font-variant: all-small-caps;
-    color: #868686;
+  font-family: "Roboto", sans-serif;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 20px;
+  line-height: 18px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  font-variant: all-small-caps;
+  color: #868686;
 }
 
 .button {
-    width: 200px !important;
-    height: 35px !important;
-    border-radius: 5px !important;
-    cursor: pointer !important;
-    font-family: "Roboto", sans-serif !important;
-    font-style: normal !important;
-    font-weight: 700 !important;
-    font-size: 25px !important;
-    display: flex !important;
-    align-items: center !important;
-    text-align: center !important;
-    justify-content: center !important;
-    font-variant: all-small-caps !important;
+  width: 200px !important;
+  height: 35px !important;
+  border-radius: 5px !important;
+  cursor: pointer !important;
+  font-family: "Roboto", sans-serif !important;
+  font-style: normal !important;
+  font-weight: 700 !important;
+  font-size: 25px !important;
+  display: flex !important;
+  align-items: center !important;
+  text-align: center !important;
+  justify-content: center !important;
+  font-variant: all-small-caps !important;
 }
 
 .CardKanji {
-    font-family: "Noto Sans JP", sans-serif;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 80px;
-    line-height: 116px;
-    display: flex;
-    align-items: center;
-    text-align: center;
-    justify-content: center;
-    /* color: #101920; */
+  font-family: "Noto Sans JP", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 80px;
+  line-height: 116px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  /* color: #101920; */
 }
 
 .CardText {
-    font-family: "Roboto", sans-serif;
-    font-style: normal;
-    font-weight: 700;
-    font-size: 16px;
-    line-height: 19px;
-    display: flex;
-    align-items: center;
-    text-align: center;
-    font-variant: all-small-caps;
-    justify-content: center;
-    /* color: #d9d7dc; */
+  font-family: "Roboto", sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 19px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  font-variant: all-small-caps;
+  justify-content: center;
+  /* color: #d9d7dc; */
+}
+
+.hintHeaderKanji {
+  font-family: "Noto Sans JP", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 100px;
+  color: #101920;
+  background-color: #e6e1e7;
+}
+
+.wellcomeTitle {
+  font-family: "Roboto", sans-serif;
+  font-weight: 700;
+  font-size: 25px;
+  text-transform: uppercase;
+}
+.wellcomeList {
+  font-weight: 300;
+  font-family: Roboto, sans-serif;
+  font-variant: normal;
+}
+
+.wellcomeEnd {
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-size: 25px;
+  font-variant: all-small-caps;
 }

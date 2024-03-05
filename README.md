@@ -24,6 +24,7 @@ Each `Kanji` can provide info in popover by pressing on `?` button.
 
 - v1.0 release
 - v1.2 added hint button with popovers on mobile and desktop
+- v2.0 refactored to native-store. Mobile only
 
 ### References:
 

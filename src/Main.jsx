@@ -17,6 +17,14 @@ import {
   Text,
   useDisclosure,
   VStack,
+  Tag,
+} from "@chakra-ui/react";
+import {
+  List,
+  ListItem,
+  ListIcon,
+  OrderedList,
+  UnorderedList,
 } from "@chakra-ui/react";
 import Icon from "@mdi/react";
 import { mdiMenu } from "@mdi/js";
@@ -160,40 +168,40 @@ export default function Main() {
                   <Button
                     onClick={handleSelectLevel(5)}
                     className="button"
-                    bg={storeState.jlpt === 5 ? "#014A77FF" : null}
-                    color={storeState.jlpt === 5 ? "#ffffff" : null}
+                    bg={storeState.jlpt === 5 ? "#014A77FF" : "#e6e1e7"}
+                    color={storeState.jlpt === 5 ? "#ffffff" : "#868686"}
                   >
                     level 5
                   </Button>
                   <Button
                     onClick={handleSelectLevel(4)}
                     className="button"
-                    bg={storeState.jlpt === 4 ? "#014A77FF" : null}
-                    color={storeState.jlpt === 4 ? "#ffffff" : null}
+                    bg={storeState.jlpt === 4 ? "#014A77FF" : "#e6e1e7"}
+                    color={storeState.jlpt === 4 ? "#ffffff" : "#868686"}
                   >
                     level 4
                   </Button>
                   <Button
                     onClick={handleSelectLevel(3)}
                     className="button"
-                    bg={storeState.jlpt === 3 ? "#014A77FF" : null}
-                    color={storeState.jlpt === 3 ? "#ffffff" : null}
+                    bg={storeState.jlpt === 3 ? "#014A77FF" : "#e6e1e7"}
+                    color={storeState.jlpt === 3 ? "#ffffff" : "#868686"}
                   >
                     level 3
                   </Button>
                   <Button
                     onClick={handleSelectLevel(2)}
                     className="button"
-                    bg={storeState.jlpt === 2 ? "#014A77FF" : null}
-                    color={storeState.jlpt === 2 ? "#ffffff" : null}
+                    bg={storeState.jlpt === 2 ? "#014A77FF" : "#e6e1e7"}
+                    color={storeState.jlpt === 2 ? "#ffffff" : "#868686"}
                   >
                     level 2
                   </Button>
                   <Button
                     onClick={handleSelectLevel(1)}
                     className="button"
-                    bg={storeState.jlpt === 1 ? "#014A77FF" : null}
-                    color={storeState.jlpt === 1 ? "#ffffff" : null}
+                    bg={storeState.jlpt === 1 ? "#014A77FF" : "#e6e1e7"}
+                    color={storeState.jlpt === 1 ? "#ffffff" : "#868686"}
                   >
                     level 1
                   </Button>
@@ -205,18 +213,42 @@ export default function Main() {
                   <Text className="HeaderMain">Choose input</Text>
                   <Button
                     onClick={handleSelectInput("meanings")}
+                    bg={
+                      storeState.input === "meanings" ? "#014A77FF" : "#e6e1e7"
+                    }
+                    color={
+                      storeState.input === "meanings" ? "#ffffff" : "#868686"
+                    }
                     className="button"
                   >
                     meanings
                   </Button>
                   <Button
                     onClick={handleSelectInput("readings_on")}
+                    bg={
+                      storeState.input === "readings_on"
+                        ? "#014A77FF"
+                        : "#e6e1e7"
+                    }
+                    color={
+                      storeState.input === "readings_on" ? "#ffffff" : "#868686"
+                    }
                     className="button"
                   >
                     onyomi
                   </Button>
                   <Button
                     onClick={handleSelectInput("readings_kun")}
+                    bg={
+                      storeState.input === "readings_kun"
+                        ? "#014A77FF"
+                        : "#e6e1e7"
+                    }
+                    color={
+                      storeState.input === "readings_kun"
+                        ? "#ffffff"
+                        : "#868686"
+                    }
                     className="button"
                   >
                     Kunyomi
@@ -228,8 +260,8 @@ export default function Main() {
                 <VStack>
                   <Button
                     onClick={handleHintMode}
-                    bg={hintMode ? "#014A77FF" : null}
-                    color={hintMode ? "#ffffff" : null}
+                    bg={hintMode ? "#014A77FF" : "#e6e1e7"}
+                    color={hintMode ? "#ffffff" : "#868686"}
                     className="button"
                   >
                     hint mode
@@ -293,8 +325,55 @@ export default function Main() {
         <Center>
           {storeState.data.length === 0 ? (
             <Box>
-              <Text>Welcome</Text>
-              <Text>info message</Text>
+              <Text className="wellcomeTitle" mb="20px">
+                Welcome to Kanji Quiz!
+              </Text>
+              Hello there! 🎉 Get ready to challenge your knowledge of Japanese{" "}
+              <Tag bg="#AF282F" color="#ffffff">
+                Kanji
+              </Tag>{" "}
+              characters. Follow these simple steps to start your quiz:
+              <UnorderedList className="wellcomeList" mt="20px" mb="20px">
+                <ListItem>
+                  Select JLPT{" "}
+                  <Tag bg="#AF282F" color="#ffffff">
+                    Level
+                  </Tag>{" "}
+                  to Begin: If you're new here or want to start fresh, hit the{" "}
+                  <Tag bg="#AF282F" color="#ffffff">
+                    Reset
+                  </Tag>{" "}
+                  button to clear previous results and set your quiz to default
+                  settings.
+                </ListItem>
+                <ListItem>
+                  Select{" "}
+                  <Tag bg="#014A77FF" color="#ffffff">
+                    Input
+                  </Tag>{" "}
+                  Type: Decide whether you want to focus on meanings, onyomi
+                  readings, or kunyomi readings during the quiz. Click the
+                  corresponding button to make your selection.
+                </ListItem>
+                <ListItem>
+                  Need a little extra help? Toggle the{" "}
+                  <Tag bg="#014A77FF" color="#ffffff">
+                    Hint Mode
+                  </Tag>{" "}
+                  on to reveal additional information about each kanji
+                  character.
+                </ListItem>
+                <ListItem>
+                  Once you've finished, press{" "}
+                  <Tag bg="#014A77FF" color="#ffffff">
+                    Results
+                  </Tag>{" "}
+                  to reveal your results.
+                </ListItem>
+              </UnorderedList>
+              <Text className="wellcomeEnd">
+                Happy learning, and enjoy your Kanji Quiz experience! 📚🀄
+              </Text>
             </Box>
           ) : null}
           <Grid
