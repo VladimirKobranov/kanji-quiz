@@ -14,17 +14,12 @@ import {
   DrawerOverlay,
   Grid,
   GridItem,
+  ListItem,
+  Tag,
   Text,
+  UnorderedList,
   useDisclosure,
   VStack,
-  Tag,
-} from "@chakra-ui/react";
-import {
-  List,
-  ListItem,
-  ListIcon,
-  OrderedList,
-  UnorderedList,
 } from "@chakra-ui/react";
 import Icon from "@mdi/react";
 import { mdiMenu } from "@mdi/js";
@@ -44,8 +39,8 @@ export default function Main() {
   const { storeState, setStoreState } = useContext(StoreContext);
   const { results, makeResults } = useContext(StoreContext);
   const { reset } = useContext(StoreContext);
-  const { level, setLevel } = useContext(StoreContext);
-  const { input, setInput } = useContext(StoreContext);
+  const { setLevel } = useContext(StoreContext);
+  const { setInput } = useContext(StoreContext);
   const { hintMode, setHintMode } = useContext(StoreContext);
   const [inputVal, setInputVal] = useState("");
   const [shuffledKanjiData, setShuffledKanjiData] = useState([]);
@@ -154,7 +149,7 @@ export default function Main() {
           />
           <DrawerHeader p="0">
             <Center>
-              <VStack mt="20px">
+              <VStack mt="10px">
                 <Text className="TitleKanji">漢字 クイズ</Text>
                 <Text className="TitleMain">Kanji Quiz</Text>
               </VStack>
@@ -162,7 +157,7 @@ export default function Main() {
           </DrawerHeader>
           <DrawerBody>
             <VStack>
-              <Box mb="20px">
+              <Box mb="10px">
                 <VStack>
                   <Text className="HeaderMain">Choose level</Text>
                   <Button
@@ -170,6 +165,11 @@ export default function Main() {
                     className="button"
                     bg={storeState.jlpt === 5 ? "#014A77FF" : "#e6e1e7"}
                     color={storeState.jlpt === 5 ? "#ffffff" : "#868686"}
+                    _hover={
+                      storeState.jlpt === 5
+                        ? { bg: "#014A77FF" }
+                        : { bg: "#e6e1e7" }
+                    }
                   >
                     level 5
                   </Button>
@@ -178,6 +178,11 @@ export default function Main() {
                     className="button"
                     bg={storeState.jlpt === 4 ? "#014A77FF" : "#e6e1e7"}
                     color={storeState.jlpt === 4 ? "#ffffff" : "#868686"}
+                    _hover={
+                      storeState.jlpt === 5
+                        ? { bg: "#014A77FF" }
+                        : { bg: "#e6e1e7" }
+                    }
                   >
                     level 4
                   </Button>
@@ -186,6 +191,11 @@ export default function Main() {
                     className="button"
                     bg={storeState.jlpt === 3 ? "#014A77FF" : "#e6e1e7"}
                     color={storeState.jlpt === 3 ? "#ffffff" : "#868686"}
+                    _hover={
+                      storeState.jlpt === 5
+                        ? { bg: "#014A77FF" }
+                        : { bg: "#e6e1e7" }
+                    }
                   >
                     level 3
                   </Button>
@@ -194,6 +204,11 @@ export default function Main() {
                     className="button"
                     bg={storeState.jlpt === 2 ? "#014A77FF" : "#e6e1e7"}
                     color={storeState.jlpt === 2 ? "#ffffff" : "#868686"}
+                    _hover={
+                      storeState.jlpt === 5
+                        ? { bg: "#014A77FF" }
+                        : { bg: "#e6e1e7" }
+                    }
                   >
                     level 2
                   </Button>
@@ -202,13 +217,18 @@ export default function Main() {
                     className="button"
                     bg={storeState.jlpt === 1 ? "#014A77FF" : "#e6e1e7"}
                     color={storeState.jlpt === 1 ? "#ffffff" : "#868686"}
+                    _hover={
+                      storeState.jlpt === 5
+                        ? { bg: "#014A77FF" }
+                        : { bg: "#e6e1e7" }
+                    }
                   >
                     level 1
                   </Button>
                 </VStack>
               </Box>
 
-              <Box mb="20px">
+              <Box mb="10px">
                 <VStack>
                   <Text className="HeaderMain">Choose input</Text>
                   <Button
@@ -218,6 +238,11 @@ export default function Main() {
                     }
                     color={
                       storeState.input === "meanings" ? "#ffffff" : "#868686"
+                    }
+                    _hover={
+                      storeState.jlpt === 5
+                        ? { bg: "#014A77FF" }
+                        : { bg: "#e6e1e7" }
                     }
                     className="button"
                   >
@@ -232,6 +257,11 @@ export default function Main() {
                     }
                     color={
                       storeState.input === "readings_on" ? "#ffffff" : "#868686"
+                    }
+                    _hover={
+                      storeState.jlpt === 5
+                        ? { bg: "#014A77FF" }
+                        : { bg: "#e6e1e7" }
                     }
                     className="button"
                   >
@@ -249,6 +279,11 @@ export default function Main() {
                         ? "#ffffff"
                         : "#868686"
                     }
+                    _hover={
+                      storeState.jlpt === 5
+                        ? { bg: "#014A77FF" }
+                        : { bg: "#e6e1e7" }
+                    }
                     className="button"
                   >
                     Kunyomi
@@ -262,6 +297,11 @@ export default function Main() {
                     onClick={handleHintMode}
                     bg={hintMode ? "#014A77FF" : "#e6e1e7"}
                     color={hintMode ? "#ffffff" : "#868686"}
+                    _hover={
+                      storeState.jlpt === 5
+                        ? { bg: "#014A77FF" }
+                        : { bg: "#e6e1e7" }
+                    }
                     className="button"
                   >
                     hint mode
@@ -279,7 +319,12 @@ export default function Main() {
                     className="button"
                     bg="#014A77FF"
                     color="#ffffff"
-                    mb="20px"
+                    mb="10px"
+                    _hover={
+                      storeState.jlpt === 5
+                        ? { bg: "#014A77FF" }
+                        : { bg: "#e6e1e7" }
+                    }
                   >
                     results
                   </Button>
@@ -300,7 +345,7 @@ export default function Main() {
       </Drawer>
 
       <Suspense fallback={<Text>loading...</Text>}>
-        <Box>
+        <Box mb="10px">
           <VStack alignItems="start">
             <Text className="SelectedLevel">
               {storeState.data.length === 0
@@ -324,7 +369,7 @@ export default function Main() {
         </Box>
         <Center>
           {storeState.data.length === 0 ? (
-            <Box>
+            <Box fontSize="sm">
               <Text className="wellcomeTitle" mb="20px">
                 Welcome to Kanji Quiz!
               </Text>
@@ -377,7 +422,7 @@ export default function Main() {
             </Box>
           ) : null}
           <Grid
-            templateColumns="repeat(3, 1fr)"
+            templateColumns="repeat(4, 1fr)"
             gap={3}
             className={hintMode ? "gridFieldHint" : "gridField"}
           >

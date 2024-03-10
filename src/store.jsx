@@ -76,7 +76,7 @@ export const StoreProvider = ({ children }) => {
     setHintMode(false);
   };
 
-  console.log("store:", storeState);
+  // console.log("store:", storeState);
 
   return (
     <StoreContext.Provider

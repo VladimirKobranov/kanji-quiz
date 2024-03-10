@@ -1,6 +1,17 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;200;300;400;500;600;700;800;900&display=swap");
 
+
+.body{
+  overflow: hidden;
+  /* For smooth scrolling in Safari */
+  /* For Firefox */
+}
+
+.body{
+  -webkit-overflow-scrolling: touch;
+}
+
 .menuIcon {
   position: fixed;
   top: 20px;
@@ -9,12 +20,15 @@
 
 .gridField {
   overflow-y: auto;
-  max-height: calc(100vh - 120px);
+  /*overflow-block: visible;*/
+  /*overflow: visible;*/
+  max-height: calc(100vh - 130px);
+  /*max-width: calc(100vw - 40px);*/
 }
 
 .gridFieldHint {
   overflow-y: auto;
-  max-height: calc(100vh - 136px);
+  max-height: calc(100vh - 146px);
 }
 
 .footer {
@@ -81,7 +95,7 @@
   font-style: normal;
   font-weight: 300;
   font-size: 25px;
-  line-height: 41px;
+  line-height: 30px;
 
   display: flex;
   text-align: left;
@@ -95,7 +109,7 @@
   font-style: normal;
   font-weight: 300;
   font-size: 15px;
-  line-height: 18px;
+  line-height: 15px;
   display: flex;
   align-items: center;
   text-align: center;

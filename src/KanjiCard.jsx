@@ -3,6 +3,7 @@ import { StoreContext } from "./store";
 import {
   Box,
   Center,
+  Flex,
   Input,
   Popover,
   PopoverArrow,
@@ -12,7 +13,6 @@ import {
   PopoverHeader,
   PopoverTrigger,
   Text,
-  Flex,
 } from "@chakra-ui/react";
 import "./style.css";
 
@@ -70,16 +70,6 @@ export default function KanjiCard({
                   </Text>
                 </Center>
               </PopoverTrigger>
-              {/* <PopoverContent> */}
-              {/*   <PopoverArrow /> */}
-              {/*   <PopoverCloseButton /> */}
-              {/*   <PopoverHeader bg="tomato">Hint!</PopoverHeader> */}
-              {/*   <PopoverBody> */}
-              {/*     <Text>Meanings: {meanings.join(", ")}</Text> */}
-              {/*     <Text>Readings (On): {readings_on.join("、 ")}</Text> */}
-              {/*     <Text>Readings (Kun): {readings_kun.join("、 ")}</Text> */}
-              {/*   </PopoverBody> */}
-              {/* </PopoverContent> */}
               <PopoverContent>
                 <PopoverArrow />
                 <PopoverCloseButton size="lg" color="#FCFCFDFF" />
@@ -129,8 +119,9 @@ export default function KanjiCard({
           disabled={isDisabled}
           _placeholder={{ opacity: 0.2, color: "#000000" }}
           focusBorderColor="#E6E1E7"
-          // _hover={{ backgroundColor: color }}
-          // _focus={{ backgroundColor: color }}
+          _hover={{ backgroundColor: value }}
+          borderColor={handleCorrect}
+          // _focus={{ backgroundColor: "black" }}
         />
       </Box>
     </Center>
