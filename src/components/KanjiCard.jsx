@@ -33,6 +33,12 @@ const KanjiCard = memo(function KanjiCard({ kanji }) {
 
   const handleCardClick = useCallback((event) => {
     if (event.target.closest("input")) return;
+    if (
+      event.target.closest(
+        '[data-slot="sheet-content"], [data-slot="sheet-overlay"]',
+      )
+    )
+      return;
     setHintOpen(true);
   }, []);
 
