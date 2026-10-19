@@ -35,6 +35,7 @@ function KanjiHint({
   const [showAllWords, setShowAllWords] = useState(false);
   const [compactHero, setCompactHero] = useState(false);
   const touchStart = useRef(null);
+  const fullHeroRef = useRef(null);
   const isMobile = useIsMobile();
   const kanjiData = useStore((state) => state.kanjiData[activeKanji]) || {};
   const currentDeck = useStore((state) => state.currentDeck);
@@ -197,52 +198,47 @@ function KanjiHint({
         .filter(Boolean);
 
   const mobileDetails = (
-    <div className="flex min-h-full flex-col bg-background text-foreground">
-      <header
-        className={cn(
-          "shrink-0 bg-foreground px-4 pt-[calc(env(safe-area-inset-top)+12px)] text-background",
-          compactHero ? "pb-3" : "pb-5",
-        )}
+    <div className="relative flex h-full min-h-0 flex-col bg-background text-foreground">
+      <div
+        onScroll={(event) => {
+          const scrollTop = event.currentTarget.getBoundingClientRect().top;
+          setCompactHero(
+            fullHeroRef.current?.getBoundingClientRect().bottom <= scrollTop,
+          );
+        }}
+        className="min-h-0 flex-1 overflow-y-auto overscroll-contain"
       >
-        <div className="flex h-11 items-center justify-between">
-          <span className="size-11" aria-hidden="true" />
-          <span className="text-xs tracking-[0.2em] text-background/70">
-            漢字
-          </span>
-          <button
-            type="button"
-            aria-label="Close"
-            onClick={() => onOpenChange(false)}
-            className="flex size-11 items-center justify-center rounded-full border border-background/30 text-background"
-          >
-            <X className="size-5" />
-          </button>
-        </div>
-        {compactHero ? (
-          <div className="flex items-center justify-center gap-3 pt-1">
-            <span className="text-4xl font-bold">{activeKanji}</span>
-            <span className="max-w-[70%] truncate text-sm text-background/80">
-              {meanings[0] || "—"}
+        <header
+          ref={fullHeroRef}
+          className="bg-foreground px-4 pt-[calc(env(safe-area-inset-top)+12px)] pb-5 text-background"
+        >
+          <div className="flex h-11 items-center justify-between">
+            <span className="size-11" aria-hidden="true" />
+            <span className="text-xs tracking-[0.2em] text-background/70">
+              漢字
             </span>
+            <button
+              type="button"
+              aria-label="Close"
+              onClick={() => onOpenChange(false)}
+              className="flex size-11 items-center justify-center rounded-full border border-background/30 text-background"
+            >
+              <X className="size-5" />
+            </button>
           </div>
-        ) : (
-          <>
-            <div className="text-center text-[120px] font-bold leading-[1.1]">
-              {activeKanji}
-            </div>
-            <div className="mt-2 flex flex-wrap justify-center gap-2">
-              {meanings.map((meaning) => (
-                <span
-                  key={meaning}
-                  className="rounded-full border border-background/30 px-3.5 py-1.5 text-sm"
-                >
-                  {meaning}
-                </span>
-              ))}
-            </div>
-          </>
-        )}
-        {!compactHero && (
+          <div className="text-center text-[120px] font-bold leading-[1.1]">
+            {activeKanji}
+          </div>
+          <div className="mt-2 flex flex-wrap justify-center gap-2">
+            {meanings.map((meaning) => (
+              <span
+                key={meaning}
+                className="rounded-full border border-background/30 px-3.5 py-1.5 text-sm"
+              >
+                {meaning}
+              </span>
+            ))}
+          </div>
           <div className="mt-5 grid grid-cols-4 gap-2">
             <MobileStat
               label="JLPT"
@@ -253,107 +249,146 @@ function KanjiHint({
             <MobileStat label="Grade" value={displayGrade} />
             <MobileStat label="Freq" value={displayFrequency} />
           </div>
-        )}
-      </header>
+        </header>
 
-      <nav className="shrink-0 px-4 pt-4">
-        <div className="flex rounded-xl bg-secondary p-1">
-          {["Overview", "Words", "Parts"].map((tab) => (
-            <button
-              key={tab}
-              type="button"
-              onClick={() => setMobileTab(tab)}
-              className={cn(
-                "h-10 flex-1 rounded-lg text-sm",
-                mobileTab === tab
-                  ? "bg-background font-bold text-foreground shadow-sm"
-                  : "text-muted-foreground",
-              )}
-            >
-              {tab}
-            </button>
-          ))}
-        </div>
-      </nav>
+        <nav
+          className={cn(
+            "sticky z-20 bg-background px-4 pt-4",
+            compactHero
+              ? "top-[calc(116px+env(safe-area-inset-top))]"
+              : "top-0",
+          )}
+        >
+          <div className="flex rounded-xl bg-secondary p-1">
+            {["Overview", "Words", "Parts"].map((tab) => (
+              <button
+                key={tab}
+                type="button"
+                onClick={() => setMobileTab(tab)}
+                className={cn(
+                  "h-10 flex-1 rounded-lg text-sm",
+                  mobileTab === tab
+                    ? "bg-background font-bold text-foreground shadow-sm"
+                    : "text-muted-foreground",
+                )}
+              >
+                {tab}
+              </button>
+            ))}
+          </div>
+        </nav>
 
-      <div
-        onScroll={(event) => setCompactHero(event.currentTarget.scrollTop > 60)}
-        className="min-h-0 flex-1 overflow-y-auto overscroll-contain px-5 pb-28 pt-4"
-      >
-        {mobileTab === "Overview" && (
-          <section className="grid grid-cols-2 gap-3">
-            <MobileReadings label="Onyomi" labelJp="音読み" value={displayOn} />
-            <MobileReadings
-              label="Kunyomi"
-              labelJp="訓読み"
-              value={displayKun}
-              kunyomi
-            />
-          </section>
-        )}
+        <div className="px-5 pt-4 pb-28">
+          {mobileTab === "Overview" && (
+            <section className="grid grid-cols-2 gap-3">
+              <MobileReadings
+                label="Onyomi"
+                labelJp="音読み"
+                value={displayOn}
+              />
+              <MobileReadings
+                label="Kunyomi"
+                labelJp="訓読み"
+                value={displayKun}
+                kunyomi
+              />
+            </section>
+          )}
 
-        {mobileTab === "Words" && cardVocabulary?.length > 0 && (
-          <section className="mt-2">
-            <MobileSectionTitle label="Vocabulary" labelJp="単語" />
-            <div>
-              {cardVocabulary
-                .slice(0, showAllWords ? undefined : 4)
-                .map((item) => (
-                  <div
-                    key={`${item.word}-${item.reading}`}
-                    className="grid grid-cols-[88px_1fr] items-center gap-3 border-b border-border/70 py-3 last:border-0"
-                  >
-                    <div>
-                      <div className="text-[11px] text-muted-foreground">
-                        {item.reading}
+          {mobileTab === "Words" && cardVocabulary?.length > 0 && (
+            <section className="mt-2">
+              <MobileSectionTitle label="Vocabulary" labelJp="単語" />
+              <div>
+                {cardVocabulary
+                  .slice(0, showAllWords ? undefined : 4)
+                  .map((item) => (
+                    <div
+                      key={`${item.word}-${item.reading}`}
+                      className="grid grid-cols-[88px_1fr] items-center gap-3 border-b border-border/70 py-3 last:border-0"
+                    >
+                      <div>
+                        <div className="text-[11px] text-muted-foreground">
+                          {item.reading}
+                        </div>
+                        <div className="text-xl font-bold leading-tight">
+                          {item.word}
+                        </div>
                       </div>
-                      <div className="text-xl font-bold leading-tight">
-                        {item.word}
-                      </div>
+                      <p className="text-sm leading-snug text-foreground/80">
+                        {item.meaning}
+                      </p>
                     </div>
-                    <p className="text-sm leading-snug text-foreground/80">
-                      {item.meaning}
-                    </p>
-                  </div>
-                ))}
-              {cardVocabulary.length > 4 && (
-                <button
-                  type="button"
-                  onClick={() => setShowAllWords(!showAllWords)}
-                  className="mt-3 text-sm font-semibold underline"
-                >
-                  {showAllWords ? "Show less" : "Show all"}
-                </button>
-              )}
-            </div>
-          </section>
-        )}
+                  ))}
+                {cardVocabulary.length > 4 && (
+                  <button
+                    type="button"
+                    onClick={() => setShowAllWords(!showAllWords)}
+                    className="mt-3 text-sm font-semibold underline"
+                  >
+                    {showAllWords ? "Show less" : "Show all"}
+                  </button>
+                )}
+              </div>
+            </section>
+          )}
 
-        {mobileTab !== "Words" && (
-          <section className="mt-6 grid grid-cols-2 gap-4 border-t border-border/70 pt-5">
-            <div>
-              <MobileSectionTitle label="Radical" labelJp="部首" />
-              {displayRadical ? (
-                <MobileGlyph>{displayRadical}</MobileGlyph>
-              ) : (
-                <span className="text-sm text-muted-foreground">—</span>
-              )}
-            </div>
-            <div>
-              <MobileSectionTitle label="Parts" labelJp="構成" />
-              <div className="flex flex-wrap gap-2">
-                {displayParts?.length ? (
-                  displayParts.map((part) => (
-                    <MobileGlyph key={part}>{part}</MobileGlyph>
-                  ))
+          {mobileTab !== "Words" && (
+            <section className="mt-6 grid grid-cols-2 gap-4 border-t border-border/70 pt-5">
+              <div>
+                <MobileSectionTitle label="Radical" labelJp="部首" />
+                {displayRadical ? (
+                  <MobileGlyph>{displayRadical}</MobileGlyph>
                 ) : (
                   <span className="text-sm text-muted-foreground">—</span>
                 )}
               </div>
-            </div>
-          </section>
-        )}
+              <div>
+                <MobileSectionTitle label="Parts" labelJp="構成" />
+                <div className="flex flex-wrap gap-2">
+                  {displayParts?.length ? (
+                    displayParts.map((part) => (
+                      <MobileGlyph key={part}>{part}</MobileGlyph>
+                    ))
+                  ) : (
+                    <span className="text-sm text-muted-foreground">—</span>
+                  )}
+                </div>
+              </div>
+            </section>
+          )}
+        </div>
       </div>
+      <header
+        className={cn(
+          "absolute inset-x-0 top-0 z-30 bg-foreground px-4 pt-[calc(env(safe-area-inset-top)+12px)] pb-3 text-background transition-[opacity,transform] duration-200",
+          compactHero
+            ? "translate-y-0 opacity-100"
+            : "pointer-events-none -translate-y-2 opacity-0",
+        )}
+        aria-hidden={!compactHero}
+      >
+        <div className="flex h-11 items-center justify-between">
+          <span className="size-11" aria-hidden="true" />
+          <span className="text-xs tracking-[0.2em] text-background/70">
+            漢字
+          </span>
+          <button
+            type="button"
+            aria-label="Close"
+            tabIndex={compactHero ? 0 : -1}
+            onClick={() => onOpenChange(false)}
+            className="flex size-11 items-center justify-center rounded-full border border-background/30 text-background"
+          >
+            <X className="size-5" />
+          </button>
+        </div>
+        <div className="flex items-center justify-center gap-3 pt-1">
+          <span className="text-4xl font-bold">{activeKanji}</span>
+          <span className="max-w-[70%] truncate text-sm text-background/80">
+            {meanings[0] || "—"}
+          </span>
+        </div>
+      </header>
       <footer className="absolute inset-x-0 bottom-0 flex gap-3 border-t border-border bg-background px-4 pt-3 pb-[calc(env(safe-area-inset-bottom)+12px)]">
         <button
           type="button"
